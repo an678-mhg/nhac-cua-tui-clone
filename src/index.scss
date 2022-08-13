@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --deg: 5deg;
+  --base: #43c2af;
+  --second: #7e8bc6;
+  --trackball: var(--base);
+  --range: 0%;
+  --bg: #10252f;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.line {
+  position: relative;
+}
+
+.line::after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 15px;
+  background-color: rgba(28, 30, 32, 0.88);
+  right: 0;
+  transform: translate(0, -50%);
+  top: 50%;
+}
+
+.sidebar-parent {
+  animation: height 0.3s ease-in;
+}
+
+.sidebar-child {
+  display: none;
+  animation: height 0.3s ease-in;
+}
+
+.sidebar-parent.active .sidebar-child {
+  display: block;
+}
+
+@keyframes height {
+  to {
+    height: 200px;
+    opacity: 1;
+  }
+  from {
+    height: 0%;
+    opacity: 0;
+  }
+}
+
+.line-clamp-1,
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  position: relative;
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      // transform: scale(3);
+      // transition: 0.5s all ease;
+    }
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    width: var(--range);
+    height: 2px;
+    background: var(--second);
+  }
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--base);
+  height: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: none;
+  -webkit-appearance: none;
+  background-color: var(--trackball);
+  margin-top: -3.5px;
+  z-index: 99;
+  position: relative;
+  transition: 0.5s all ease;
+}
+
+#value {
+  position: absolute;
+  left: var(--range);
+  top: 41%;
+  font-size: 14px;
+  color: var(--trackball);
+  // transition: 0.5s all ease; //goofy
+  transition: 0.5s color ease;
+}
+
+.control-volume {
+  display: none;
+}
+
+.sound-icon:hover .control-volume {
+  display: block;
+}
