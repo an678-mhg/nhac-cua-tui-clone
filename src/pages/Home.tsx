@@ -4,6 +4,7 @@ import { getHome } from "nhaccuatui-api-full";
 import Slider from "../components/Slider";
 import { Item, TopicEvent } from "../model";
 import SongItem from "../components/Songs/SongItem";
+import Banner from "../components/Slider/Banner";
 
 const Home = () => {
   const { data, error } = useSWR("home", getHome);
@@ -11,9 +12,9 @@ const Home = () => {
   return (
     <MainLayout>
       <div className="px-4 w-full">
-        {/* <div className="mb-14">
-          <Slider views={1} autoPlay banners={data?.showcase} />
-        </div> */}
+        <div className="mb-10">
+          <Banner banners={data?.showcase} />
+        </div>
 
         <div>
           {data?.topicEvent?.map((item: TopicEvent) => (
@@ -21,32 +22,28 @@ const Home = () => {
               <h1 className="mb-5 font-semibold text-xl">
                 {item.groupName.split("_")[0]}
               </h1>
-              <Slider
-                type="playlists"
-                banners={item.listPlaylist}
-                spacer={20}
-              />
+              <Slider banners={item.listPlaylist} spacer={20} />
             </div>
           ))}
 
           <div className="mb-5">
             <h1 className="mb-5 font-semibold text-xl">Mới Phát Hành</h1>
-            <Slider type="songs" banners={data?.newRelease?.song} spacer={20} />
+            <Slider banners={data?.newRelease?.song} spacer={20} />
           </div>
 
           <div className="mb-5">
             <h1 className="mb-5 font-semibold text-xl">Top 100</h1>
-            <Slider type="playlists" banners={data?.top100} spacer={20} />
+            <Slider banners={data?.top100} spacer={20} />
           </div>
 
           <div className="mb-5">
             <h1 className="mb-5 font-semibold text-xl">Chủ Đề Hot</h1>
-            <Slider type="topics" banners={data?.topic} spacer={20} />
+            <Slider type="topic" banners={data?.topic} spacer={20} />
           </div>
 
           <div className="mb-5">
-            <h1 className="mb-5 font-semibold text-xl">Vide Hot</h1>
-            <Slider type="videos" banners={data?.video} spacer={20} />
+            <h1 className="mb-5 font-semibold text-xl">Video Hot</h1>
+            <Slider banners={data?.video} spacer={20} />
           </div>
 
           <div className="mb-5">

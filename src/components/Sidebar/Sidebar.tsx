@@ -4,7 +4,7 @@ import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
   return (
-    <div className="h-full">
+    <div className="h-full" onClick={(e) => e.stopPropagation()}>
       <div className="px-4">
         <Logo />
 

@@ -37,7 +37,9 @@ const PlaylistsDetails = () => {
                   </div>
                 ))}
               </div>
-              {data?.playlist?.artists?.map((item: any) => item.name).join(",")}
+              {data?.playlist?.artists
+                ?.map((item: any) => item.name)
+                .join(", ")}
             </p>
             <p className="mt-4">
               {dayjs(data?.playlist?.dateCreate).format("DD/MM/YYYY")}

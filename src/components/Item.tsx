@@ -23,7 +23,11 @@ const ItemCmp = ({ item, type }: ItemType) => {
     <div onClick={handlePlaySong}>
       <Link
         to={
-          type && type !== "songs" ? `/${type || item.type}/${item.key}` : "#"
+          item.type
+            ? `/${item.type}/${item.key}`
+            : type
+            ? `/${type}/${item.key}`
+            : "#"
         }
         className={`aspect-auto block w-full rounded-md`}
       >

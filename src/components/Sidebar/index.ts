@@ -24,7 +24,7 @@ export const sidebar = [
     child: [
       {
         name: "Bài Hát",
-        path: "/songs/0",
+        path: "/song",
       },
       {
         name: "Playlist",
@@ -32,11 +32,11 @@ export const sidebar = [
       },
       {
         name: "Video",
-        path: "/videos",
+        path: "/video",
       },
       {
         name: "Nghệ Sĩ",
-        path: "/artists",
+        path: "/artist",
       },
     ],
   },

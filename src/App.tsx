@@ -2,9 +2,14 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Player from "./components/Player";
 import useInnerWidth from "./hooks/useInnerWidth";
+import Artist from "./pages/Artist";
 import Home from "./pages/Home";
+import MV from "./pages/MV";
+import Playlist from "./pages/Playlist";
 import PlaylistsDetails from "./pages/PlaylistsDetails";
+import SongDetails from "./pages/SongDetails";
 import Songs from "./pages/Songs";
+import VideoDetails from "./pages/VideoDetails";
 import useStore from "./zustand/menu";
 
 function App() {
@@ -33,11 +38,17 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/playlists/:key" element={<PlaylistsDetails />} />
-        <Route path="/songs/:page" element={<Songs />} />
+        <Route path="/PLAYLIST/:key" element={<PlaylistsDetails />} />
+        <Route path="/VIDEO/:key" element={<VideoDetails />} />
+        <Route path="/SONG/:key" element={<SongDetails />} />
+        <Route path="/song" element={<Songs />} />
+        <Route path="/playlist" element={<Playlist />} />
+        <Route path="/video" element={<MV />} />
+        <Route path="/artist" element={<Artist />} />
       </Routes>
 
       <div
+        onClick={(e) => e.stopPropagation()}
         style={{
           right: isPC ? "0px" : player ? "0" : "-300px",
           transition: "all linear 0.3s",
