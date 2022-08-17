@@ -2,7 +2,12 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AiOutlinePause, AiOutlineSound } from "react-icons/ai";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
-import { BsFillPlayFill } from "react-icons/bs";
+import {
+  BsFillPlayFill,
+  BsFillVolumeUpFill,
+  BsVolumeDownFill,
+  BsVolumeMuteFill,
+} from "react-icons/bs";
 import { PlayerContext } from "../context/PlayerContext";
 import { getSong } from "nhaccuatui-api-full";
 import useSWR from "swr";
@@ -10,6 +15,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import formatTime from "../utils/contants";
 import { IoIosRepeat } from "react-icons/io";
 import { FaRandom } from "react-icons/fa";
+import ListSong from "./ListSong";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
@@ -24,12 +30,12 @@ const Player = () => {
 
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(100);
-  // const [muted, setMuted] = useState(false)
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [showControlVolume, setShowConTrolVolume] = useState(false);
   const [repeat, setRepeat] = useState(false);
   const [random, setRandom] = useState(false);
+  const [showListSong, setShowListSong] = useState(false);
 
   const audioRef = useRef<any>();
   const progressRef = useRef<any>();
@@ -160,9 +166,9 @@ const Player = () => {
 
   return (
     <div className="flex-col justify-between h-full flex">
-      <div className="p-4 bg-[rgba(28,30,32,0.02)] rounded-md">
+      <div className="bg-[rgba(28,30,32,0.02)] rounded-md relative">
         {data && (
-          <>
+          <div className="p-4">
             <div className="w-full aspect-auto">
               <LazyLoadImage
                 className="rounded-md"
@@ -182,7 +188,13 @@ const Player = () => {
                 {data?.song?.artists?.map((item: any) => item?.name).join(", ")}
               </p>
             </div>
-          </>
+          </div>
+        )}
+
+        {showListSong && (
+          <div>
+            <ListSong />
+          </div>
         )}
       </div>
 
@@ -194,10 +206,17 @@ const Player = () => {
               setShowConTrolVolume(!showControlVolume);
             }}
           >
-            <AiOutlineSound className="w-5 h-5" />
+            {Number(volume) === 0 ? (
+              <BsVolumeMuteFill className="w-5 h-5" />
+            ) : (
+              <BsFillVolumeUpFill className="w-5 h-5" />
+            )}
           </div>
-          <button className="bg-[rgba(28,30,32,0.02)] px-6 py-2 rounded-full text-xs text-gray-400">
-            Danh Sách Phát
+          <button
+            onClick={() => setShowListSong((prev) => !prev)}
+            className="bg-[rgba(28,30,32,0.02)] px-6 py-2 rounded-full text-xs text-gray-400"
+          >
+            {showListSong ? "Tắt Danh Sách Phát" : "Mở Danh Sách Phát"}
           </button>
           <BiDotsVerticalRounded className="w-5 h-5" />
 
