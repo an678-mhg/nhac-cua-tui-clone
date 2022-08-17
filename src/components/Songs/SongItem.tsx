@@ -1,19 +1,18 @@
-import React, { FC, useContext } from "react";
+import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { PlayerContext } from "../../context/PlayerContext";
-import { Item } from "../../model";
+import { Song } from "../../model";
 
 interface SongItemProps {
-  item: Item;
+  item: Song;
+  index: number;
+  onClick: (index: number) => void;
 }
 
-const SongItem: FC<SongItemProps> = ({ item }) => {
-  const { setSongId } = useContext(PlayerContext);
-
+const SongItem: FC<SongItemProps> = ({ item, onClick, index }) => {
   return (
     <div
       className="flex items-start p-2 rounded-md hover:bg-gray-200 transition-colors cursor-pointer"
-      onClick={() => setSongId(item.key)}
+      onClick={() => onClick(index)}
     >
       <div className="w-[54px] h-[54px] shadow-md">
         <LazyLoadImage

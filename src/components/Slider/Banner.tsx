@@ -22,7 +22,7 @@ const Banner: FC<BannerProps> = ({ banners }) => {
     >
       {banners?.map((item) => (
         <SwiperSlide key={item.key}>
-          <div className="w-full aspect-auto">
+          <div className="w-full aspect-[987/345] rounded-md overflow-hidden">
             <LazyLoadImage
               className="rounded-md"
               src={item.imageUrl || item.thumbnail || item.thumbURL}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AiOutlinePause, AiOutlineSound } from "react-icons/ai";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
@@ -12,11 +12,13 @@ import { IoIosRepeat } from "react-icons/io";
 import { FaRandom } from "react-icons/fa";
 
 const Player = () => {
-  const { songId } = useContext(PlayerContext);
+  const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
 
-  const { data, error } = useSWR(`song-${songId}`, () => {
-    if (songId) {
-      return getSong(songId);
+  const songKey = songIds && songIds[currentIndex]?.key;
+
+  const { data, error } = useSWR(`song-${songKey}`, () => {
+    if (songIds && songKey) {
+      return getSong(songKey);
     }
   });
 
@@ -26,6 +28,8 @@ const Player = () => {
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [showControlVolume, setShowConTrolVolume] = useState(false);
+  const [repeat, setRepeat] = useState(false);
+  const [random, setRandom] = useState(false);
 
   const audioRef = useRef<any>();
   const progressRef = useRef<any>();
@@ -45,10 +49,10 @@ const Player = () => {
   };
 
   useEffect(() => {
-    if (!audioRef.current || !songId || !data?.song?.streamUrls) return;
+    if (!audioRef.current || !songIds || !data?.song?.streamUrls) return;
     audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
     setPlaying(true);
-  }, [songId, data]);
+  }, [songIds, data]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -114,7 +118,44 @@ const Player = () => {
   };
 
   const handleAudioEnded = () => {
-    setPlaying(false);
+    if (repeat) {
+      return audioRef.current.play();
+    }
+    if (random) {
+      const randomIndex = Math.floor(Math.random() * songIds.length);
+      return setCurrentIndex(randomIndex);
+    }
+
+    handleNextSong();
+  };
+
+  const handleNextSong = () => {
+    if (random) {
+      const randomIndex = Math.floor(Math.random() * songIds.length);
+      return setCurrentIndex(randomIndex);
+    }
+
+    setCurrentIndex((prev: number) => {
+      if (prev === songIds.length - 1) {
+        return prev;
+      }
+
+      return prev + 1;
+    });
+  };
+
+  const handlePrevSong = () => {
+    if (random) {
+      const randomIndex = Math.floor(Math.random() * songIds.length);
+      return setCurrentIndex(randomIndex);
+    }
+    setCurrentIndex((prev: number) => {
+      if (prev === 0) {
+        return prev;
+      }
+
+      return prev - 1;
+    });
   };
 
   return (
@@ -178,7 +219,7 @@ const Player = () => {
           <div className="flex items-center justify-between text-gray-400 text-xs font-normal">
             <p style={{ userSelect: "none" }}>{formatTime(currentTime)}</p>
             <div
-              className="flex-1 py-2 mx-[10px]"
+              className="flex-1 py-2 mx-[10px] cursor-pointer"
               ref={progressRef}
               onClick={handleSeekTime}
             >
@@ -198,8 +239,13 @@ const Player = () => {
 
           <div className="flex items-center justify-between mt-5 text-[rgba(28,30,32,0.5)]">
             <div className="flex items-center cursor-pointer">
-              <IoIosRepeat className="w-6 h-6 mr-4" />
-              <MdSkipPrevious className="w-8 h-8" />
+              <IoIosRepeat
+                onClick={() => {
+                  setRepeat((prev) => !prev);
+                }}
+                className={`w-6 h-6 mr-4 ${repeat && "text-blue-500"}`}
+              />
+              <MdSkipPrevious onClick={handlePrevSong} className="w-8 h-8" />
             </div>
             <div onClick={handlePlayPause}>
               {playing ? (
@@ -209,8 +255,11 @@ const Player = () => {
               )}
             </div>
             <div className="flex items-center cursor-pointer">
-              <MdSkipNext className="w-8 h-8" />
-              <FaRandom className="w-4 h-4 ml-4" />
+              <MdSkipNext onClick={handleNextSong} className="w-8 h-8" />
+              <FaRandom
+                onClick={() => setRandom((prev) => !prev)}
+                className={`w-4 h-4 ml-4 ${random && "text-blue-500"}`}
+              />
             </div>
           </div>
         </div>

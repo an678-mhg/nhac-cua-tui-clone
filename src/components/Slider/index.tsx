@@ -13,6 +13,7 @@ interface BannerProps {
   spacer?: number;
   autoPlay?: boolean;
   type?: string;
+  radio?: string;
 }
 
 const Slider: FC<BannerProps> = ({
@@ -20,6 +21,7 @@ const Slider: FC<BannerProps> = ({
   spacer = 0,
   autoPlay = false,
   type,
+  radio = "1/1",
 }) => {
   const { width } = useInnerWidth();
 
@@ -43,7 +45,7 @@ const Slider: FC<BannerProps> = ({
     >
       {banners?.map((item) => (
         <SwiperSlide key={item.key}>
-          <Item item={item} type={type} />
+          <Item radio={radio} item={item} type={type} />
         </SwiperSlide>
       ))}
     </Swiper>

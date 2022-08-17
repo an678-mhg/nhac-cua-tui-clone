@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { getSong, getLyric } from "nhaccuatui-api-full/dist";
+import { AiFillPlayCircle } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import MainLayout from "../layout/MainLayout";
@@ -12,15 +13,18 @@ const SongDetails = () => {
     getLyric(String(key))
   );
 
-  console.log(lyric);
+  function createMarkup() {
+    return { __html: lyric?.lyric?.lyric };
+  }
 
   return (
     <MainLayout>
       <div className="px-4">
         <div className="flex md:flex-row flex-col">
           <div className="flex items-center justify-center md:w-auto w-full">
-            <div className="w-[238px] max-w-full aspect-[1/1] bg-gray-400 rounded-md">
+            <div className="w-[238px] max-w-full aspect-[1/1] bg-gray-400 rounded-md relative">
               <img className="rounded-md" src={data?.song?.thumbnail} />
+              <AiFillPlayCircle className="absolute w-5 h-5 bottom-0 right-0 p-4 z-[1000]" />
             </div>
           </div>
 
@@ -47,6 +51,11 @@ const SongDetails = () => {
 
         <div className="mt-4 mb-5 font-semibold text-xl">
           <h1>Lời Bài hát</h1>
+
+          <div
+            className="leading-loose text-sm text-gray-500 bg-[rgba(28,30,32,0.02)] p-4 mt-4 font-normal"
+            dangerouslySetInnerHTML={createMarkup()}
+          />
         </div>
       </div>
     </MainLayout>

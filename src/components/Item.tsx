@@ -6,9 +6,10 @@ import { PlayerContext } from "../context/PlayerContext";
 interface ItemType {
   item: any;
   type?: string;
+  radio?: string;
 }
 
-const ItemCmp = ({ item, type }: ItemType) => {
+const ItemCmp = ({ item, type, radio = "1/1" }: ItemType) => {
   const { setSongId } = useContext(PlayerContext);
 
   const handlePlaySong = () => {
@@ -29,7 +30,8 @@ const ItemCmp = ({ item, type }: ItemType) => {
             ? `/${type}/${item.key}`
             : "#"
         }
-        className={`aspect-auto block w-full rounded-md`}
+        className={`block w-full rounded-md`}
+        style={{ aspectRatio: radio }}
       >
         <LazyLoadImage
           src={item.imageUrl || item.thumbnail || item.thumbURL}

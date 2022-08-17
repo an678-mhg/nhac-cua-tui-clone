@@ -7,7 +7,7 @@ import { SWRConfig } from "swr";
 import PlayerContextProvider from "./context/PlayerContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <>
     <BrowserRouter>
       <PlayerContextProvider>
         <SWRConfig value={{ revalidateOnFocus: false }}>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </SWRConfig>
       </PlayerContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );
