@@ -3,20 +3,26 @@ import MainLayout from "../layout/MainLayout";
 import { getHome } from "nhaccuatui-api-full";
 import Slider from "../components/Slider";
 import { Song, TopicEvent } from "../model";
-import SongItem from "../components/Songs/SongItem";
+import SongItem from "../components/Song/SongItem";
 import Banner from "../components/Slider/Banner";
-import WrapSong from "../components/Songs/WrapSong";
+import WrapSong from "../components/Song/WrapSong";
 import { HomeData } from "../model/home";
+import Error from "../components/Error";
+import HomeSkeleton from "../components/Skeleton/HomeSkeleton";
 
 const Home = () => {
   const { data, error } = useSWR("home", (): Promise<HomeData> => {
     return getHome();
   });
 
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <MainLayout>
       {!data ? (
-        <>Loading...</>
+        <HomeSkeleton />
       ) : (
         <div className="px-4 w-full">
           <div className="mb-10">

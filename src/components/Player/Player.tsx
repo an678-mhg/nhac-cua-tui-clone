@@ -1,24 +1,40 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { AiOutlinePause, AiOutlineSound } from "react-icons/ai";
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { AiOutlineDownload, AiOutlinePause } from "react-icons/ai";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import {
   BsFillPlayFill,
   BsFillVolumeUpFill,
-  BsVolumeDownFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
-import { PlayerContext } from "../context/PlayerContext";
+import { PlayerContext } from "../../context/PlayerContext";
 import { getSong } from "nhaccuatui-api-full";
 import useSWR from "swr";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import formatTime from "../utils/contants";
-import { IoIosRepeat } from "react-icons/io";
-import { FaRandom } from "react-icons/fa";
-import ListSong from "./ListSong";
+import { formatTime, forceDownloadFile } from "../../utils/contants";
+import useStore from "../../zustand/menu";
+import PlayerThumnail from "./PlayerThumnail";
+import Error from "../Error";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
+  const { setPlayer, player } = useStore();
+
+  const songMemo = useMemo(() => {
+    return songIds;
+  }, [songIds.length]);
+
+  const setCurrentIndexMemo = useCallback(
+    (index: number) => setCurrentIndex(index),
+    []
+  );
+
+  const setPlayerMemo = useCallback(() => setPlayer(), [player]);
 
   const songKey = songIds && songIds[currentIndex]?.key;
 
@@ -33,8 +49,6 @@ const Player = () => {
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [showControlVolume, setShowConTrolVolume] = useState(false);
-  const [repeat, setRepeat] = useState(false);
-  const [random, setRandom] = useState(false);
   const [showListSong, setShowListSong] = useState(false);
 
   const audioRef = useRef<any>();
@@ -124,23 +138,10 @@ const Player = () => {
   };
 
   const handleAudioEnded = () => {
-    if (repeat) {
-      return audioRef.current.play();
-    }
-    if (random) {
-      const randomIndex = Math.floor(Math.random() * songIds.length);
-      return setCurrentIndex(randomIndex);
-    }
-
     handleNextSong();
   };
 
   const handleNextSong = () => {
-    if (random) {
-      const randomIndex = Math.floor(Math.random() * songIds.length);
-      return setCurrentIndex(randomIndex);
-    }
-
     setCurrentIndex((prev: number) => {
       if (prev === songIds.length - 1) {
         return prev;
@@ -151,10 +152,6 @@ const Player = () => {
   };
 
   const handlePrevSong = () => {
-    if (random) {
-      const randomIndex = Math.floor(Math.random() * songIds.length);
-      return setCurrentIndex(randomIndex);
-    }
     setCurrentIndex((prev: number) => {
       if (prev === 0) {
         return prev;
@@ -164,39 +161,22 @@ const Player = () => {
     });
   };
 
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <div className="flex-col justify-between h-full flex">
-      <div className="bg-[rgba(28,30,32,0.02)] rounded-md relative">
-        {data && (
-          <div className="p-4">
-            <div className="w-full aspect-auto">
-              <LazyLoadImage
-                className="rounded-md"
-                src={
-                  data?.song?.thumbnail ||
-                  "https://thumbs.dreamstime.com/b/no-image-available-icon-vector-illustration-flat-design-140476186.jpg"
-                }
-                effect="blur"
-              />
-            </div>
-
-            <div className="mt-5">
-              <h1 className="font-semibold line-clamp-1">
-                {data?.song?.title}
-              </h1>
-              <p className="text-sm text-gray-400 font-normal line-clamp-1">
-                {data?.song?.artists?.map((item: any) => item?.name).join(", ")}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {showListSong && (
-          <div>
-            <ListSong />
-          </div>
-        )}
-      </div>
+      <PlayerThumnail
+        thumbnail={data?.song?.thumbnail}
+        title={data?.song?.title}
+        artists={data?.song?.artists?.map((item: any) => item.name).join(", ")}
+        setCurrentIndexMemo={setCurrentIndexMemo}
+        setPlayer={setPlayerMemo}
+        showListSong={showListSong}
+        songMemo={songMemo}
+        key={"player"}
+      />
 
       <div className="pb-5">
         <div className="flex items-center justify-between relative">
@@ -207,9 +187,9 @@ const Player = () => {
             }}
           >
             {Number(volume) === 0 ? (
-              <BsVolumeMuteFill className="w-5 h-5" />
+              <BsVolumeMuteFill className="w-5 h-5 text-gray-500" />
             ) : (
-              <BsFillVolumeUpFill className="w-5 h-5" />
+              <BsFillVolumeUpFill className="w-5 h-5 text-gray-500" />
             )}
           </div>
           <button
@@ -218,7 +198,12 @@ const Player = () => {
           >
             {showListSong ? "Tắt Danh Sách Phát" : "Mở Danh Sách Phát"}
           </button>
-          <BiDotsVerticalRounded className="w-5 h-5" />
+          <AiOutlineDownload
+            onClick={() =>
+              forceDownloadFile(data?.song?.streamUrls[0]?.streamUrl)
+            }
+            className="w-5 h-5"
+          />
 
           {showControlVolume && (
             <div
@@ -258,12 +243,6 @@ const Player = () => {
 
           <div className="flex items-center justify-between mt-5 text-[rgba(28,30,32,0.5)]">
             <div className="flex items-center cursor-pointer">
-              <IoIosRepeat
-                onClick={() => {
-                  setRepeat((prev) => !prev);
-                }}
-                className={`w-6 h-6 mr-4 ${repeat && "text-blue-500"}`}
-              />
               <MdSkipPrevious onClick={handlePrevSong} className="w-8 h-8" />
             </div>
             <div onClick={handlePlayPause}>
@@ -275,10 +254,6 @@ const Player = () => {
             </div>
             <div className="flex items-center cursor-pointer">
               <MdSkipNext onClick={handleNextSong} className="w-8 h-8" />
-              <FaRandom
-                onClick={() => setRandom((prev) => !prev)}
-                className={`w-4 h-4 ml-4 ${random && "text-blue-500"}`}
-              />
             </div>
           </div>
         </div>

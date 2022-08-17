@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Player from "./components/Player";
+import Player from "./components/Player/Player";
+import { PlayerContext } from "./context/PlayerContext";
 import useInnerWidth from "./hooks/useInnerWidth";
 import Artist from "./pages/Artist";
 import Home from "./pages/Home";
@@ -50,10 +51,10 @@ function App() {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          right: isPC ? "0px" : player ? "0" : "-300px",
+          right: isPC ? "0px" : player ? "0" : "-100%",
           transition: "all linear 0.3s",
         }}
-        className={`w-[300px] max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-6 fixed top-0 bottom-0 z-[9999] bg-white`}
+        className={`md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-6 fixed top-0 bottom-0 z-[9999] bg-white`}
       >
         <Player />
       </div>

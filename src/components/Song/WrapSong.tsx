@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import { PlayerContext } from "../../context/PlayerContext";
 import { Song } from "../../model";
+import useStore from "../../zustand/menu";
 import SongItem from "./SongItem";
 
 const WrapSong = ({ songs }: { songs: Song[] }) => {
   const { setSongId, setCurrentIndex } = useContext(PlayerContext);
+  const { setPlayer } = useStore();
 
   const handleClick = (index: number) => {
     setCurrentIndex(index);
     setSongId(songs);
+    setPlayer();
   };
 
   return (

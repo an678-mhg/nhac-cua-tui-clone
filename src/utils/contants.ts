@@ -1,4 +1,4 @@
-const formatTime = (seconds: number) => {
+export const formatTime = (seconds: number) => {
   try {
     const date = new Date(0);
     date.setSeconds(seconds);
@@ -16,4 +16,16 @@ const formatTime = (seconds: number) => {
   }
 };
 
-export default formatTime;
+export const forceDownloadFile = (url: string) => {
+  const anchor = document.createElement("a");
+  anchor.target = "_blank";
+  anchor.href = url;
+  anchor.download = url;
+  anchor.style.display = "none";
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+};
+
+export const imgNotFound =
+  "https://thumbs.dreamstime.com/b/no-image-available-icon-vector-illustration-flat-design-140476186.jpg";

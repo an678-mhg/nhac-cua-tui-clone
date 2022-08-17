@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import Item from "../Item";
+import Item from "./Item";
 import useInnerWidth from "../../hooks/useInnerWidth";
 
 interface BannerProps {

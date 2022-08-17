@@ -30,6 +30,12 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         >
           <Sidebar />
         </div>
+        {menu && (
+          <div
+            onClick={setMenu}
+            className="fixed inset-0 bg-black opacity-50 z-[9998] transition-opacity"
+          ></div>
+        )}
         <div
           className="relative"
           style={{

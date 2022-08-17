@@ -1,10 +1,12 @@
 import { getPlaylistDetail } from "nhaccuatui-api-full/dist";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import SongItem from "../components/Songs/SongItem";
+import SongItem from "../components/Song/SongItem";
 import MainLayout from "../layout/MainLayout";
 import dayjs from "dayjs";
-import WrapSong from "../components/Songs/WrapSong";
+import WrapSong from "../components/Song/WrapSong";
+import Error from "../components/Error";
+import DetailSkeleton from "../components/Skeleton/DetailSkeleton";
 
 const PlaylistsDetails = () => {
   const { key } = useParams();
@@ -15,10 +17,14 @@ const PlaylistsDetails = () => {
     }
   });
 
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <MainLayout>
       {!data ? (
-        <>Loading....</>
+        <DetailSkeleton />
       ) : (
         <div className="px-4">
           <div className="flex md:flex-row flex-col">

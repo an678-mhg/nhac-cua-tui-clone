@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { PlayerContext } from "../context/PlayerContext";
+import { PlayerContext } from "../../context/PlayerContext";
+import { imgNotFound } from "../../utils/contants";
 
 interface ItemType {
   item: any;
@@ -34,7 +35,7 @@ const ItemCmp = ({ item, type, radio = "1/1" }: ItemType) => {
         style={{ aspectRatio: radio }}
       >
         <LazyLoadImage
-          src={item.imageUrl || item.thumbnail || item.thumbURL}
+          src={item.imageUrl || item.thumbnail || item.thumbURL || imgNotFound}
           alt={item.title}
           effect="blur"
           width="100%"

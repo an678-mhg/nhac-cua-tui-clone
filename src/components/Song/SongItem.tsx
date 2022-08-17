@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Song } from "../../model";
+import { imgNotFound } from "../../utils/contants";
 
 interface SongItemProps {
   item: Song;
@@ -16,10 +17,7 @@ const SongItem: FC<SongItemProps> = ({ item, onClick, index }) => {
     >
       <div className="w-[54px] h-[54px] shadow-md">
         <LazyLoadImage
-          src={
-            item.thumbnail ||
-            "https://thumbs.dreamstime.com/b/no-image-available-icon-vector-illustration-flat-design-140476186.jpg"
-          }
+          src={item.thumbnail || imgNotFound}
           alt={item.title}
           width="100%"
           height="100%"
