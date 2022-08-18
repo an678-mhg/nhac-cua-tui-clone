@@ -29,3 +29,6 @@ export const forceDownloadFile = (url: string) => {
 
 export const imgNotFound =
   "https://thumbs.dreamstime.com/b/no-image-available-icon-vector-illustration-flat-design-140476186.jpg";
+
+export const img404 =
+  "https://raw.githubusercontent.com/an678-mhg/NextComics/main/public/not-found.png";

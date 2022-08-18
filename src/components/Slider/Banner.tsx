@@ -25,7 +25,12 @@ const Banner: FC<BannerProps> = ({ banners }) => {
           <div className="w-full aspect-[987/345] rounded-md overflow-hidden">
             <LazyLoadImage
               className="rounded-md border"
-              src={item.imageUrl || item.thumbnail || item.thumbURL}
+              src={
+                item.coverImageURL ||
+                item.imageUrl ||
+                item.thumbnail ||
+                item.thumbURL
+              }
               alt={item.title}
               effect={"blur"}
             />

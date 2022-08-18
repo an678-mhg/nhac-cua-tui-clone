@@ -13,6 +13,10 @@ import Songs from "./pages/Explore/Songs";
 import VideoDetails from "./pages/Detail/VideoDetails";
 import useStore from "./zustand/menu";
 import ArtistDetails from "./pages/Detail/ArtistDetails";
+import Error from "./components/Error";
+import Search from "./pages/Search";
+import Topics from "./pages/ListenToday/Topics";
+import TopicDetails from "./pages/Detail/TopicDetails";
 
 function App() {
   const { player, close } = useStore();
@@ -40,14 +44,18 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/PLAYLIST/:key" element={<PlaylistsDetails />} />
         <Route path="/VIDEO/:key" element={<VideoDetails />} />
         <Route path="/SONG/:key" element={<SongDetails />} />
+        <Route path="/TOPIC/:key" element={<TopicDetails />} />
         <Route path="/ARTIST/:shortLink" element={<ArtistDetails />} />
         <Route path="/song" element={<Songs />} />
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/video" element={<MV />} />
         <Route path="/artist" element={<Artist />} />
+        <Route path="/topics" element={<Topics />} />
+        <Route path="*" element={<Error />} />
       </Routes>
 
       <div

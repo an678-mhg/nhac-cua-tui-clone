@@ -14,7 +14,7 @@ const ListSong: FC<ListSongProps> = ({ songIds, setCurrentIndex }) => {
   );
 
   return (
-    <div className="absolute top-0 w-full bg-white h-full overflow-auto">
+    <div className="absolute top-0 w-full bg-white h-full overflow-auto scroll-none">
       <h1 className="font-semibold mb-2">Danh sách phát</h1>
       {songIds.map((item, index) => (
         <ListSongItem

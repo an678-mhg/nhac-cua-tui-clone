@@ -51,7 +51,7 @@ const Home = () => {
 
             <div className="mb-5">
               <h1 className="mb-5 font-semibold text-xl">Chủ Đề Hot</h1>
-              <Slider type="topic" banners={data?.topic} spacer={20} />
+              <Slider type="TOPIC" banners={data?.topic} spacer={20} />
             </div>
 
             <div className="mb-5">

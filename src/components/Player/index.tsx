@@ -73,7 +73,7 @@ const Player = () => {
   useEffect(() => {
     if (!audioRef.current || !songIds || !data?.song?.streamUrls) return;
     audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
-    setPlaying(true);
+    audioRef.current.play();
   }, [songIds, data]);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Player = () => {
 
   useEffect(() => {
     if (!audioRef.current) return;
-    audioRef.current.volume = volume / 100;
+    audioRef.current.volume = Number(volume) / 100;
   }, [volume]);
 
   useEffect(() => {

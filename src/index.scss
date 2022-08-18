@@ -86,6 +86,10 @@ img {
   -webkit-line-clamp: 2;
 }
 
+.line-clamp-2.show-all {
+  -webkit-line-clamp: 100;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   position: relative;

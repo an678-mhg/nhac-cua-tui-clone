@@ -1,7 +1,6 @@
 import { getPlaylistDetail } from "nhaccuatui-api-full/dist";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
-import SongItem from "../../components/Song/SongItem";
 import MainLayout from "../../layout/MainLayout";
 import dayjs from "dayjs";
 import WrapSong from "../../components/Song/WrapSong";

@@ -47,11 +47,7 @@ export const sidebar = [
     child: [
       {
         name: "Chủ Đề",
-        path: "/themes",
-      },
-      {
-        name: "Tuyển Tập",
-        path: "/tags",
+        path: "/topics",
       },
       {
         name: "Top 100",
