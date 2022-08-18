@@ -2,12 +2,12 @@ import dayjs from "dayjs";
 import { getSong, getLyric } from "nhaccuatui-api-full/dist";
 import { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
-import Error from "../components/Error";
-import DetailSkeleton from "../components/Skeleton/DetailSkeleton";
-import { PlayerContext } from "../context/PlayerContext";
-import MainLayout from "../layout/MainLayout";
+import Error from "../../components/Error";
+import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
+import { PlayerContext } from "../../context/PlayerContext";
+import MainLayout from "../../layout/MainLayout";
 
 const SongDetails = () => {
   const { key } = useParams();
@@ -47,22 +47,25 @@ const SongDetails = () => {
             </div>
 
             <div className="flex-1 md:ml-5 ml-0 md:mt-0 mt-5">
-              <p>Bài Hát: {data?.song?.title}</p>
+              <p>
+                <div>Bài Hát: {data?.song?.title}</div>
+              </p>
               <p className="flex items-center mt-4">
                 <div className="flex items-center mr-3">
                   {data?.song?.artists?.map((item: any) => (
-                    <div
+                    <Link
+                      to={item.shortLink ? `/ARTIST/${item.shortLink}` : "#"}
                       key={item.artistId}
                       className="w-5 h-5 bg-gray-500 rounded-full"
                     >
                       <img className="rounded-full" src={item.imageUrl} />
-                    </div>
+                    </Link>
                   ))}
                 </div>
                 {data?.song?.artists?.map((item: any) => item.name).join(", ")}
               </p>
               <p className="mt-4">
-                {dayjs(data?.playlist?.dateCreate).format("DD/MM/YYYY")}
+                {dayjs(data?.playlist?.dateCreate).format("MMMM D, YYYY")}
               </p>
             </div>
           </div>

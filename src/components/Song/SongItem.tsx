@@ -21,7 +21,7 @@ const SongItem: FC<SongItemProps> = ({ item, onClick, index }) => {
           alt={item.title}
           width="100%"
           height="100%"
-          className="rounded-md"
+          className="rounded-md border"
           effect="blur"
         />
       </div>

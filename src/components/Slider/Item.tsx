@@ -40,7 +40,7 @@ const ItemCmp = ({ item, type, radio = "1/1" }: ItemType) => {
           effect="blur"
           width="100%"
           height="100%"
-          className="rounded-md"
+          className="rounded-md border"
         />
       </Link>
     </div>

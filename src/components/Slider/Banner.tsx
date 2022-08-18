@@ -24,7 +24,7 @@ const Banner: FC<BannerProps> = ({ banners }) => {
         <SwiperSlide key={item.key}>
           <div className="w-full aspect-[987/345] rounded-md overflow-hidden">
             <LazyLoadImage
-              className="rounded-md"
+              className="rounded-md border"
               src={item.imageUrl || item.thumbnail || item.thumbURL}
               alt={item.title}
               effect={"blur"}

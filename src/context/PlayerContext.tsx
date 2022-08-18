@@ -18,8 +18,12 @@ export const PlayerContext = createContext<PlayerContextState>({
 const PlayerContextProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [songIds, setSongId] = useState<Song[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [songIds, setSongId] = useState<Song[]>(
+    JSON.parse(localStorage.getItem("nct-list-song") as any) || []
+  );
+  const [currentIndex, setCurrentIndex] = useState(
+    JSON.parse(localStorage.getItem("nct-current-index") as any) || 0
+  );
 
   const PlayerContextData = {
     songIds,

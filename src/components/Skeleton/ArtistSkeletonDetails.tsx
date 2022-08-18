@@ -1,15 +1,16 @@
 import React from "react";
-import GridLayout from "../../layout/GridLayout";
 import BannerSkeleton from "./BannerSkeleton";
+import ListSongSkeleton from "./ListSongSkeleton";
 import SliderSkeleton from "./SliderSkeleton";
 
-const HomeSkeleton = () => {
+const ArtistSkeletonDetails = () => {
   return (
     <div className="px-4">
       <BannerSkeleton />
       <SliderSkeleton />
+      <ListSongSkeleton />
     </div>
   );
 };
 
-export default HomeSkeleton;
+export default ArtistSkeletonDetails;

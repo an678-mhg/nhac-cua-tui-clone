@@ -15,7 +15,7 @@ const WrapSong = ({ songs }: { songs: Song[] }) => {
   };
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-4">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-2 my-5">
       {songs.map((item, index) => (
         <SongItem
           onClick={handleClick}

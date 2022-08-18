@@ -1,17 +1,18 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Player from "./components/Player/Player";
+import Player from "./components/Player";
 import { PlayerContext } from "./context/PlayerContext";
 import useInnerWidth from "./hooks/useInnerWidth";
-import Artist from "./pages/Artist";
+import Artist from "./pages/Explore/Artist";
 import Home from "./pages/Home";
-import MV from "./pages/MV";
-import Playlist from "./pages/Playlist";
-import PlaylistsDetails from "./pages/PlaylistsDetails";
-import SongDetails from "./pages/SongDetails";
-import Songs from "./pages/Songs";
-import VideoDetails from "./pages/VideoDetails";
+import MV from "./pages/Explore/MV";
+import Playlist from "./pages/Explore/Playlist";
+import PlaylistsDetails from "./pages/Detail/PlaylistsDetails";
+import SongDetails from "./pages/Detail/SongDetails";
+import Songs from "./pages/Explore/Songs";
+import VideoDetails from "./pages/Detail/VideoDetails";
 import useStore from "./zustand/menu";
+import ArtistDetails from "./pages/Detail/ArtistDetails";
 
 function App() {
   const { player, close } = useStore();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/PLAYLIST/:key" element={<PlaylistsDetails />} />
         <Route path="/VIDEO/:key" element={<VideoDetails />} />
         <Route path="/SONG/:key" element={<SongDetails />} />
+        <Route path="/ARTIST/:shortLink" element={<ArtistDetails />} />
         <Route path="/song" element={<Songs />} />
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/video" element={<MV />} />
@@ -54,7 +56,7 @@ function App() {
           right: isPC ? "0px" : player ? "0" : "-100%",
           transition: "all linear 0.3s",
         }}
-        className={`md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-6 fixed top-0 bottom-0 z-[9999] bg-white`}
+        className={`scroll-none overflow-y-scroll md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-6 fixed top-0 bottom-0 z-[9999] bg-white`}
       >
         <Player />
       </div>

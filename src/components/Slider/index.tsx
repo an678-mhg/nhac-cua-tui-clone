@@ -18,7 +18,7 @@ interface BannerProps {
 
 const Slider: FC<BannerProps> = ({
   banners,
-  spacer = 0,
+  spacer = 20,
   autoPlay = false,
   type,
   radio = "1/1",

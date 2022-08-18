@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useContext } from "react";
+import React, { FC, memo, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PlayerContext } from "../../context/PlayerContext";
 import { imgNotFound } from "../../utils/contants";

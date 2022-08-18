@@ -45,7 +45,9 @@ const Player = () => {
   });
 
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useState(
+    Number(JSON.parse(localStorage.getItem("nct-volume") as any)) || 1000
+  );
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [showControlVolume, setShowConTrolVolume] = useState(false);
@@ -113,6 +115,12 @@ const Player = () => {
       });
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("nct-list-song", JSON.stringify(songIds));
+    localStorage.setItem("nct-current-index", JSON.stringify(currentIndex));
+    localStorage.setItem("nct-volume", JSON.stringify(volume));
+  }, [songIds, currentIndex, volume]);
 
   const handlePlayPause = () => {
     if (!data) return;
@@ -263,7 +271,6 @@ const Player = () => {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={handleAudioEnded}
-        autoPlay
         onTimeUpdate={handleAudioUpdate}
         ref={audioRef}
       />

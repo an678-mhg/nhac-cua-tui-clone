@@ -46,7 +46,6 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
               next={() => setSize((size) => size + 1)}
               hasMore={
                 !error &&
-                type !== "mv" &&
                 data?.slice(-1)?.[0]?.length !== 0 &&
                 Math.ceil(data?.slice(-1)?.[0].total / 36) > size
               }

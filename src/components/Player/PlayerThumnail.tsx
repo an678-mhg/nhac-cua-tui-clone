@@ -25,7 +25,7 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
   songMemo,
 }) => {
   return (
-    <div className="bg-[rgba(28,30,32,0.02)] rounded-md relative">
+    <div className="bg-[rgba(28,30,32,0.02)] rounded-md relative mb-5">
       <div className="w-full flex justify-center pt-4 md:hidden">
         <GrClose onClick={() => setPlayer()} className="w-5 h-5" />
       </div>
@@ -33,7 +33,7 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
       <div className="p-4">
         <div className="w-full aspect-auto">
           <LazyLoadImage
-            className="rounded-md"
+            className="rounded-md border"
             src={thumbnail || imgNotFound}
             effect="blur"
           />

@@ -7,18 +7,54 @@ const SkeletonExplore = ({ radio }: { radio: string }) => {
       <h1 className="mb-5 w-[200px] h-5 skeleton"></h1>
 
       <GridLayout>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
-        <div className={`aspect-[${radio}] rounded-md skeleton`}></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
+        <div
+          style={{ aspectRatio: radio }}
+          className={`rounded-md skeleton`}
+        ></div>
       </GridLayout>
     </div>
   );
