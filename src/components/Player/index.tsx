@@ -46,7 +46,7 @@ const Player = () => {
 
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(
-    Number(JSON.parse(localStorage.getItem("nct-volume") as any)) || 1000
+    Number(JSON.parse(localStorage.getItem("nct-volume") as any)) || 100
   );
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
