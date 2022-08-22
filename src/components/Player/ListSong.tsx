@@ -1,6 +1,7 @@
-import React, { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useContext, useEffect } from "react";
+import { PlayerContext } from "../../context/PlayerContext";
 import { Song } from "../../model";
-import ListSongItem from "./ListSongItem";
+import SongItem from "./SongItem";
 
 interface ListSongProps {
   songIds: Song[];
@@ -13,11 +14,23 @@ const ListSong: FC<ListSongProps> = ({ songIds, setCurrentIndex }) => {
     []
   );
 
+  const { currentIndex } = useContext(PlayerContext);
+
+  useEffect(() => {
+    const songRef = document.querySelector(`.song-${currentIndex}`);
+    if (songRef) {
+      songRef.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [currentIndex]);
+
   return (
     <div className="absolute top-0 w-full bg-white h-full overflow-auto scroll-none">
       <h1 className="font-semibold mb-2">Danh sách phát</h1>
       {songIds.map((item, index) => (
-        <ListSongItem
+        <SongItem
           artists={item.artists.map((item) => item.name).join(", ")}
           setCurrentIndex={setCurrentIndexMemo}
           key={item.key}

@@ -1,7 +1,4 @@
-import React from "react";
-import GridLayout from "../../layout/GridLayout";
 import ListSongSkeleton from "./ListSongSkeleton";
-import SongItemSkeleton from "./SongItemSkeleton";
 
 const DetailSkeleton = () => {
   return (

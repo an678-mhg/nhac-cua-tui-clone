@@ -1,6 +1,6 @@
-import { getArtistDetail } from "nhaccuatui-api-full/dist";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
+import { getArtistDetails } from "../../apis/artist";
 import Error from "../../components/Error";
 import ArtistSkeletonDetails from "../../components/Skeleton/ArtistSkeletonDetails";
 import Slider from "../../components/Slider";
@@ -15,7 +15,7 @@ const ArtistDetails = () => {
     `artist-${shortLink}`,
     (): Promise<ArtistDetailsType> | null => {
       if (shortLink) {
-        return getArtistDetail(shortLink);
+        return getArtistDetails(shortLink);
       }
 
       return null;
@@ -35,7 +35,7 @@ const ArtistDetails = () => {
           <div className="aspect-[3/1] w-full relative mb-5">
             <img src={data?.artist?.coverImageURL} />
 
-            <div className="absolute left-0 bottom-0 m-4 px-4 rounded-full shadow-md flex items-center bg-black">
+            <div className="absolute left-0 bottom-0 m-4 pr-4 rounded-full shadow-md flex items-center bg-black">
               <div className="w-12 h-12 rounded-full overflow-hidden">
                 <img className="rounded-full" src={data?.artist?.imageUrl} />
               </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import BannerSkeleton from "./BannerSkeleton";
 import ListSongSkeleton from "./ListSongSkeleton";
 import SliderSkeleton from "./SliderSkeleton";

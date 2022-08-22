@@ -1,8 +1,8 @@
-import { exploreArtists, getArtistDetail } from "nhaccuatui-api-full/dist";
 import { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
+import { getExploreArtists } from "../../apis/explore";
 import Error from "../../components/Error";
 import SkeletonExplore from "../../components/Skeleton/SkeletonExplore";
 import GridLayout from "../../layout/GridLayout";
@@ -12,7 +12,7 @@ const Artist = () => {
   const [gender, setGender] = useState(0);
 
   const { data, error } = useSWR(`artist-${gender}`, () =>
-    exploreArtists({ gender: gender })
+    getExploreArtists(gender)
   );
 
   if (error) {

@@ -1,8 +1,7 @@
-import { getTopics } from "nhaccuatui-api-full/dist";
 import useSWR from "swr";
+import { getTopics } from "../../apis/topic";
 import Error from "../../components/Error";
 import SkeletonExplore from "../../components/Skeleton/SkeletonExplore";
-import Slider from "../../components/Slider";
 import ItemCmp from "../../components/Slider/Item";
 import GridLayout from "../../layout/GridLayout";
 import MainLayout from "../../layout/MainLayout";

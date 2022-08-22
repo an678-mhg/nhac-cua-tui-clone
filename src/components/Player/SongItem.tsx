@@ -11,7 +11,7 @@ interface ListSongItemProps {
   artists: string;
 }
 
-const ListSongItem: FC<ListSongItemProps> = ({
+const SongItem: FC<ListSongItemProps> = ({
   index,
   title,
   thumbnail,
@@ -22,8 +22,8 @@ const ListSongItem: FC<ListSongItemProps> = ({
 
   return (
     <div
-      className={`my-2 p-2 flex cursor-pointer ${
-        currentIndex === index && "bg-blue-500 text-white"
+      className={`my-2 p-2 flex song-${index} cursor-pointer ${
+        currentIndex === index && "song-is-play"
       }`}
       onClick={() => setCurrentIndex(index)}
     >
@@ -37,10 +37,10 @@ const ListSongItem: FC<ListSongItemProps> = ({
 
       <div className="ml-2 flex-1">
         <p className="line-clamp-1 text-sm mb-1">{title}</p>
-        <p className="line-clamp-1 text-xs text-black">{artists}</p>
+        <p className="line-clamp-1 text-xs">{artists}</p>
       </div>
     </div>
   );
 };
 
-export default memo(ListSongItem);
+export default memo(SongItem);

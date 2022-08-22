@@ -1,8 +1,8 @@
-import { getTopicDetail } from "nhaccuatui-api-full/dist";
 import React, { useRef } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
+import { getTopicDetail } from "../../apis/topic";
 import Error from "../../components/Error";
 import TopicDetailsSkeleton from "../../components/Skeleton/TopicDetailsSkeleton";
 import ItemCmp from "../../components/Slider/Item";

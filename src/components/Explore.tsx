@@ -1,4 +1,3 @@
-import { explore } from "nhaccuatui-api-full";
 import MainLayout from "../layout/MainLayout";
 import GridLayout from "../layout/GridLayout";
 import ItemCmp from "./Slider/Item";
@@ -7,6 +6,7 @@ import useSWRInfinite from "swr/infinite";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Error from "./Error";
 import SkeletonExplore from "./Skeleton/SkeletonExplore";
+import { getExplore } from "../apis/explore";
 
 interface ExploreProps {
   type: "song" | "playlist" | "mv";
@@ -23,7 +23,7 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
     getKey,
     (key) => {
       let page = key.split("-")[2];
-      return explore({ page: Number(page), type: type, pageSize: 36 });
+      return getExplore(Number(page), type);
     },
     { revalidateFirstPage: false }
   );
@@ -47,6 +47,7 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
               hasMore={
                 !error &&
                 data?.slice(-1)?.[0]?.length !== 0 &&
+                type !== "mv" &&
                 Math.ceil(data?.slice(-1)?.[0].total / 36) > size
               }
               loader={<div className="mt-4 text-center">Loading....</div>}

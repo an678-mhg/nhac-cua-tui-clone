@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
-import { getSong, getLyric } from "nhaccuatui-api-full/dist";
 import { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
+import { getLyric, getSong } from "../../apis/song";
 import Error from "../../components/Error";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
 import { PlayerContext } from "../../context/PlayerContext";
@@ -70,13 +70,16 @@ const SongDetails = () => {
             </div>
           </div>
 
-          <div className="mt-4 mb-5 font-semibold text-xl">
+          <div className="mt-4 mb-5 font-semibold text-xl leading-loose text-gray-500 bg-[rgba(28,30,32,0.02)] p-4">
             <h1>Lời Bài hát</h1>
 
-            <div
-              className="leading-loose text-sm text-gray-500 bg-[rgba(28,30,32,0.02)] p-4 mt-4 font-normal"
-              dangerouslySetInnerHTML={createMarkup()}
-            />
+            <div className="font-normal text-sm mt-4 leading-8">
+              {lyric?.lyric?.lyric ? (
+                <div dangerouslySetInnerHTML={createMarkup()} />
+              ) : (
+                <p>Không tìm thấy lời bài hát</p>
+              )}
+            </div>
           </div>
         </div>
       )}

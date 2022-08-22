@@ -1,4 +1,3 @@
-import { getVideoDetail } from "nhaccuatui-api-full/dist";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import MainLayout from "../../layout/MainLayout";
@@ -6,6 +5,7 @@ import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
 import Error from "../../components/Error";
 import VideoSkeletonDetails from "../../components/Skeleton/VideoSkeletonDetails";
+import { getVideoDetail } from "../../apis/video";
 
 const VideoDetails = () => {
   const { key } = useParams();

@@ -1,4 +1,3 @@
-import { getPlaylistDetail } from "nhaccuatui-api-full/dist";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import MainLayout from "../../layout/MainLayout";
@@ -6,6 +5,7 @@ import dayjs from "dayjs";
 import WrapSong from "../../components/Song/WrapSong";
 import Error from "../../components/Error";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
+import { getPlaylistDetail } from "../../apis/playlist";
 
 const PlaylistsDetails = () => {
   const { key } = useParams();
