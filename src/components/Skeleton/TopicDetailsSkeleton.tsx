@@ -13,7 +13,9 @@ const TopicDetailsSkeleton = () => {
           <p className="h-5 skeleton w-[80%]"></p>
         </div>
       </div>
-      <SkeletonExplore radio="1/1" />
+      <div className="px-4">
+        <SkeletonExplore radio="1/1" />
+      </div>
     </div>
   );
 };

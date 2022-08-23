@@ -42,6 +42,8 @@ const ItemCmp = ({ item, type, radio = "1/1" }: ItemType) => {
           height="100%"
           className="rounded-md border"
         />
+
+        <p className="line-clamp-1 font-semibold text-sm">{item?.title}</p>
       </Link>
     </div>
   );

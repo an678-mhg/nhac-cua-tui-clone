@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { PlayerContext } from "../../context/PlayerContext";
 import { Song } from "../../model";
 import useStore from "../../zustand/menu";
@@ -9,9 +9,9 @@ const WrapSong = ({ songs }: { songs: Song[] }) => {
   const { setPlayer } = useStore();
 
   const handleClick = (index: number) => {
+    setPlayer();
     setCurrentIndex(index);
     setSongId(songs);
-    setPlayer();
   };
 
   return (

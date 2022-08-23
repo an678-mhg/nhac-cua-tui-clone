@@ -37,7 +37,7 @@ const Home = () => {
 
             <div className="mb-5">
               <h1 className="mb-5 font-semibold text-xl">Mới Phát Hành</h1>
-              <Slider banners={data?.newRelease?.song} spacer={20} />
+              <WrapSong songs={data?.newRelease?.song} />
             </div>
 
             <div className="mb-5">

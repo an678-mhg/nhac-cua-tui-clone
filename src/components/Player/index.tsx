@@ -13,6 +13,9 @@ import PlayerThumnail from "./PlayerThumnail";
 import Error from "../Error";
 import { getSong } from "../../apis/song";
 import Controler from "./Controler";
+import PlayReview from "../Song/PlayReview";
+import { toast } from "react-hot-toast";
+import Loading from "../Loading";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
@@ -72,6 +75,15 @@ const Player = () => {
     audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
     audioRef.current.play();
   }, [songIds, data, songKey]);
+
+  // useEffect(() => {
+  //   if (data?.song?.streamUrls?.length === 0) {
+  //     toast.error("Không tìm thấy bài hát!");
+  //     if (currentIndex <= songIds.length - 1) {
+  //       handleNextSong();
+  //     }
+  //   }
+  // }, [data?.song?.streamUrls]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -148,8 +160,8 @@ const Player = () => {
   const handleNextSong = useCallback(
     () =>
       setCurrentIndex((prev: number) => {
-        if (prev === songIds.length - 1) {
-          return prev;
+        if (prev >= songIds.length - 1) {
+          return 0;
         }
 
         return prev + 1;
@@ -160,8 +172,8 @@ const Player = () => {
   const handlePrevSong = useCallback(
     () =>
       setCurrentIndex((prev: number) => {
-        if (prev === 0) {
-          return prev;
+        if (prev <= 0) {
+          return songIds.length - 1;
         }
 
         return prev - 1;
@@ -182,17 +194,29 @@ const Player = () => {
   }
 
   return (
-    <div className="flex-col justify-between h-full flex">
-      <PlayerThumnail
-        thumbnail={data?.song?.thumbnail}
-        title={data?.song?.title}
-        artists={data?.song?.artists?.map((item: any) => item.name).join(", ")}
-        setCurrentIndexMemo={setCurrentIndexMemo}
-        setPlayer={setPlayerMemo}
-        showListSong={showListSong}
-        songMemo={songMemo}
-        key={"player"}
-      />
+    <div
+      className="flex-col justify-between h-full flex"
+      onClick={(e) => {
+        e.stopPropagation();
+        setShowConTrolVolume(false);
+      }}
+    >
+      {!data ? (
+        <Loading />
+      ) : (
+        <PlayerThumnail
+          thumbnail={data?.song?.thumbnail}
+          title={data?.song?.title}
+          artists={data?.song?.artists
+            ?.map((item: any) => item.name)
+            .join(", ")}
+          setCurrentIndexMemo={setCurrentIndexMemo}
+          setPlayer={setPlayerMemo}
+          showListSong={showListSong}
+          songMemo={songMemo}
+          key={"player"}
+        />
+      )}
 
       <Controler
         audioRef={audioRef}
@@ -220,6 +244,8 @@ const Player = () => {
         onTimeUpdate={handleAudioUpdate}
         ref={audioRef}
       />
+
+      {data && <PlayReview title={data?.song?.title} />}
     </div>
   );
 };

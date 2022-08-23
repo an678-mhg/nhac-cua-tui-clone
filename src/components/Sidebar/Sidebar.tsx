@@ -1,10 +1,21 @@
 import { sidebar } from ".";
+import useStore from "../../zustand/menu";
 import Logo from "./Logo";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
+  const { setPlayer, player } = useStore();
+
   return (
-    <div className="h-full" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="h-full"
+      onClick={(e) => {
+        e.stopPropagation();
+        if (player) {
+          setPlayer();
+        }
+      }}
+    >
       <div className="px-4">
         <Logo />
 

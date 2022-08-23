@@ -34,43 +34,45 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
 
   return (
     <MainLayout>
-      {!data ? (
-        <SkeletonExplore radio={radio} />
-      ) : (
-        <div className="px-4">
-          <h1 className="mb-5 font-semibold text-xl">{name}</h1>
-
+      <div className="px-4">
+        {!data ? (
+          <SkeletonExplore radio={radio} />
+        ) : (
           <div>
-            <InfiniteScroll
-              dataLength={data?.length || 0}
-              next={() => setSize((size) => size + 1)}
-              hasMore={
-                !error &&
-                data?.slice(-1)?.[0]?.length !== 0 &&
-                type !== "mv" &&
-                Math.ceil(data?.slice(-1)?.[0].total / 36) > size
-              }
-              loader={<div className="mt-4 text-center">Loading....</div>}
-              endMessage={
-                <p className="text-center mt-6 text-black w-full">
-                  Nothing more to see
-                </p>
-              }
-            >
-              <GridLayout>
-                {data
-                  ?.reduce((final, item) => {
-                    final.push(...item.data);
-                    return final;
-                  }, [])
-                  .map((item: any) => (
-                    <ItemCmp radio={radio} key={item.key} item={item} />
-                  ))}
-              </GridLayout>
-            </InfiniteScroll>
+            <h1 className="mb-5 font-semibold text-xl">{name}</h1>
+
+            <div>
+              <InfiniteScroll
+                dataLength={data?.length || 0}
+                next={() => setSize((size) => size + 1)}
+                hasMore={
+                  !error &&
+                  data?.slice(-1)?.[0]?.length !== 0 &&
+                  type !== "mv" &&
+                  Math.ceil(data?.slice(-1)?.[0].total / 36) > size
+                }
+                loader={<div className="mt-4 text-center">Loading....</div>}
+                endMessage={
+                  <p className="text-center mt-6 text-black w-full">
+                    Nothing more to see
+                  </p>
+                }
+              >
+                <GridLayout>
+                  {data
+                    ?.reduce((final, item) => {
+                      final.push(...item.data);
+                      return final;
+                    }, [])
+                    .map((item: any) => (
+                      <ItemCmp radio={radio} key={item.key} item={item} />
+                    ))}
+                </GridLayout>
+              </InfiniteScroll>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </MainLayout>
   );
 };

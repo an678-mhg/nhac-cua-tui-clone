@@ -53,11 +53,12 @@ const Controler: FC<ControlerProps> = ({
             e.stopPropagation();
             toggleVolumeControl();
           }}
+          className="cursor-pointer"
         >
           {Number(volume) === 0 ? (
-            <BsVolumeMuteFill className="w-5 h-5 text-gray-500" />
+            <BsVolumeMuteFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
           ) : (
-            <BsFillVolumeUpFill className="w-5 h-5 text-gray-500" />
+            <BsFillVolumeUpFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
           )}
         </div>
         <button
@@ -68,7 +69,7 @@ const Controler: FC<ControlerProps> = ({
         </button>
         <AiOutlineDownload
           onClick={() => forceDownloadFile(streamUrls || "")}
-          className="w-5 h-5"
+          className="lg:w-5 lg:h-5 w-6 h-6 cursor-pointer"
         />
 
         {showControlVolume && (
