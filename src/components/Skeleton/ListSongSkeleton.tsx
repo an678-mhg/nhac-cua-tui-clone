@@ -3,7 +3,7 @@ import SongItemSkeleton from "./SongItemSkeleton";
 
 const ListSongSkeleton = () => {
   return (
-    <>
+    <div className="my-5">
       <div>
         <h1 className="w-[200px] h-6 mt-4 skeleton"></h1>
       </div>
@@ -20,7 +20,7 @@ const ListSongSkeleton = () => {
         <SongItemSkeleton />
         <SongItemSkeleton />
       </div>
-    </>
+    </div>
   );
 };
 

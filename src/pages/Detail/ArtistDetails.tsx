@@ -61,14 +61,14 @@ const ArtistDetails = () => {
 
           {data?.playlist?.playlist && (
             <div>
-              <h1 className="mb-5 font-semibold text-xl">Playlist</h1>
+              <h1 className="my-5 font-semibold text-xl">Playlist</h1>
               <Slider banners={data?.playlist?.playlist} />
             </div>
           )}
 
           {data?.video?.video && (
             <div>
-              <h1 className="mb-5 font-semibold text-xl">Video</h1>
+              <h1 className="my-5 font-semibold text-xl">Video</h1>
               <Slider radio="16/9" banners={data?.video?.video} />
             </div>
           )}

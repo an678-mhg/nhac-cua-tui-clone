@@ -15,7 +15,6 @@ import { getSong } from "../../apis/song";
 import Controler from "./Controler";
 import PlayReview from "../Song/PlayReview";
 import { toast } from "react-hot-toast";
-import Loading from "../Loading";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
@@ -76,14 +75,21 @@ const Player = () => {
     audioRef.current.play();
   }, [songIds, data, songKey]);
 
-  // useEffect(() => {
-  //   if (data?.song?.streamUrls?.length === 0) {
-  //     toast.error("Không tìm thấy bài hát!");
-  //     if (currentIndex <= songIds.length - 1) {
-  //       handleNextSong();
-  //     }
-  //   }
-  // }, [data?.song?.streamUrls]);
+  useEffect(() => {
+    if (data?.song?.streamUrls?.length === 0) {
+      toast.error("Không tìm thấy bài hát!");
+      if (currentIndex === songIds.length) {
+        return;
+      }
+
+      return handleNextSong();
+    }
+  }, [data?.song?.streamUrls]);
+
+  useEffect(() => {
+    audioRef?.current?.pause();
+    setCurrentTime(0);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -161,7 +167,7 @@ const Player = () => {
     () =>
       setCurrentIndex((prev: number) => {
         if (prev >= songIds.length - 1) {
-          return 0;
+          return prev;
         }
 
         return prev + 1;
@@ -173,7 +179,7 @@ const Player = () => {
     () =>
       setCurrentIndex((prev: number) => {
         if (prev <= 0) {
-          return songIds.length - 1;
+          return prev;
         }
 
         return prev - 1;
@@ -201,22 +207,16 @@ const Player = () => {
         setShowConTrolVolume(false);
       }}
     >
-      {!data ? (
-        <Loading />
-      ) : (
-        <PlayerThumnail
-          thumbnail={data?.song?.thumbnail}
-          title={data?.song?.title}
-          artists={data?.song?.artists
-            ?.map((item: any) => item.name)
-            .join(", ")}
-          setCurrentIndexMemo={setCurrentIndexMemo}
-          setPlayer={setPlayerMemo}
-          showListSong={showListSong}
-          songMemo={songMemo}
-          key={"player"}
-        />
-      )}
+      <PlayerThumnail
+        thumbnail={data?.song?.thumbnail}
+        title={data?.song?.title}
+        artists={data?.song?.artists?.map((item: any) => item.name).join(", ")}
+        setCurrentIndexMemo={setCurrentIndexMemo}
+        setPlayer={setPlayerMemo}
+        showListSong={showListSong}
+        songMemo={songMemo}
+        key={"player"}
+      />
 
       <Controler
         audioRef={audioRef}

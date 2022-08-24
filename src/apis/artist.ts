@@ -9,3 +9,8 @@ export const getArtistDetails = async (key: string) => {
 
   return data.data;
 };
+
+export const getTrendingArtists = async () => {
+  const data = await client.get("/trendingArtists");
+  return data.data;
+};

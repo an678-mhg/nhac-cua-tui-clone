@@ -48,7 +48,7 @@ const VideoDetails = () => {
           <p className="mt-5 flex items-center">
             {data?.video?.artists?.map((item: any) => (
               <Link
-                to={item.artistId ? `/ARTIST/${item.artistId}` : "#"}
+                to={item.shortLink ? `/ARTIST/${item.shortLink}` : "#"}
                 key={item.artistId}
               >
                 <div className="rounded-full w-10 h-10 overflow-hidden border">

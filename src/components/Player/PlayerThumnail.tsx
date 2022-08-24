@@ -26,19 +26,19 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[rgba(28,30,32,0.02)] rounded-md mb-10 relative ${
+      className={`bg-[rgba(28,30,32,0.02)] rounded-md mb-5 relative ${
         showListSong && "h-full"
       }`}
     >
-      <div className="w-full flex justify-center pt-5 py-2 md:hidden">
+      <div className="w-full flex justify-center p-4 md:hidden">
         <GrClose onClick={() => setPlayer()} className="w-5 h-5" />
       </div>
       {showListSong ? (
         <ListSong setCurrentIndex={setCurrentIndexMemo} songIds={songMemo} />
       ) : (
         <div>
-          <div className="p-4">
-            <div className="w-full aspect-auto">
+          <div className="pr-4 pl-4 pb-4">
+            <div className="w-full aspect-[1/1]">
               <LazyLoadImage
                 className="rounded-md border"
                 src={thumbnail || imgNotFound}
