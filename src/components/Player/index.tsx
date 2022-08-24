@@ -10,7 +10,6 @@ import { PlayerContext } from "../../context/PlayerContext";
 import useSWR from "swr";
 import useStore from "../../zustand/menu";
 import PlayerThumnail from "./PlayerThumnail";
-import Error from "../Error";
 import { getSong } from "../../apis/song";
 import Controler from "./Controler";
 import PlayReview from "../Song/PlayReview";
@@ -194,10 +193,6 @@ const Player = () => {
   const toggleVolume = useCallback(() => {
     setShowConTrolVolume((prev) => !prev);
   }, []);
-
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <div
