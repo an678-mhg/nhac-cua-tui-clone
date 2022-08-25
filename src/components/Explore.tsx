@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Error from "./Error";
 import SkeletonExplore from "./Skeleton/SkeletonExplore";
 import { getExplore } from "../apis/explore";
+import { CircularProgress } from "react-cssfx-loading";
 
 interface ExploreProps {
   type: "song" | "playlist" | "mv";
@@ -51,7 +52,11 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
                   type !== "mv" &&
                   Math.ceil(data?.slice(-1)?.[0].total / 36) > size
                 }
-                loader={<div className="mt-4 text-center">Loading....</div>}
+                loader={
+                  <div className="pt-3 flex justify-center">
+                    <CircularProgress />
+                  </div>
+                }
                 endMessage={
                   <p className="text-center mt-6 text-black w-full">
                     Nothing more to see

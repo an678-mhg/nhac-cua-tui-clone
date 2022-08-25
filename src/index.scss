@@ -184,3 +184,12 @@ input[type="range"]::-webkit-slider-thumb {
   color: white;
 }
 
+.volume-control {
+  display: none;
+}
+
+.volume-icon:hover .volume-control
+{
+  display: flex;
+}
+

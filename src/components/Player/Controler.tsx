@@ -9,10 +9,8 @@ import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import { forceDownloadFile, formatTime } from "../../utils/contants";
 
 interface ControlerProps {
-  toggleVolumeControl: () => void;
   toggleListSong: () => void;
   showListSong: boolean;
-  showControlVolume: boolean;
   volume: number;
   streamUrls?: string;
   handleVolumeChange: (e: any) => void;
@@ -28,11 +26,9 @@ interface ControlerProps {
 }
 
 const Controler: FC<ControlerProps> = ({
-  toggleVolumeControl,
   volume,
   toggleListSong,
   showListSong,
-  showControlVolume,
   streamUrls,
   handleVolumeChange,
   currentTime,
@@ -51,15 +47,25 @@ const Controler: FC<ControlerProps> = ({
         <div
           onClick={(e) => {
             e.stopPropagation();
-            toggleVolumeControl();
           }}
-          className="cursor-pointer"
+          className="cursor-pointer volume-icon"
         >
           {Number(volume) === 0 ? (
             <BsVolumeMuteFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
           ) : (
             <BsFillVolumeUpFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
           )}
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="volume-control absolute left-[-65px] top-[-75px] bg-gray-200 flex items-center justify-center p-2 rounded-md rotate-[-90deg]"
+          >
+            <input
+              value={volume}
+              onChange={(e) => handleVolumeChange(e)}
+              type="range"
+            />
+          </div>
         </div>
         <button
           onClick={() => toggleListSong()}
@@ -71,19 +77,6 @@ const Controler: FC<ControlerProps> = ({
           onClick={() => forceDownloadFile(streamUrls || "")}
           className="lg:w-5 lg:h-5 w-6 h-6 cursor-pointer"
         />
-
-        {showControlVolume && (
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="absolute left-[-65px] top-[-80px] bg-gray-200 flex items-center justify-center p-2 rounded-md rotate-[-90deg]"
-          >
-            <input
-              value={volume}
-              onChange={(e) => handleVolumeChange(e)}
-              type="range"
-            />
-          </div>
-        )}
       </div>
 
       <div className="mt-8">

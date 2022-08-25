@@ -1,6 +1,7 @@
 import React, { FC, memo } from "react";
 import { GrClose } from "react-icons/gr";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 import { Song } from "../../model";
 import { imgNotFound } from "../../utils/contants";
 import ListSong from "./ListSong";
@@ -13,6 +14,7 @@ interface PlayerThumnailProps {
   showListSong: boolean;
   setCurrentIndexMemo: Function;
   songMemo: Song[];
+  id: string;
 }
 
 const PlayerThumnail: FC<PlayerThumnailProps> = ({
@@ -23,6 +25,7 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
   showListSong,
   setCurrentIndexMemo,
   songMemo,
+  id,
 }) => {
   return (
     <div
@@ -51,6 +54,10 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
               <p className="text-sm text-gray-400 font-normal line-clamp-1">
                 {artists}
               </p>
+
+              <Link to={`/SONG/${id}`} className="text-blue-500 text-sm mt-2">
+                Xem lời bài hát
+              </Link>
             </div>
           </div>
         </div>

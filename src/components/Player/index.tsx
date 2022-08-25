@@ -32,8 +32,8 @@ const Player = () => {
 
   const songKey = songIds && songIds[currentIndex]?.key;
 
-  const { data, error } = useSWR(
-    `song-${songKey}`,
+  const { data } = useSWR(
+    `player-${songKey}`,
     () => {
       if (songIds && songKey) {
         return getSong(songKey);
@@ -48,7 +48,6 @@ const Player = () => {
   );
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [showControlVolume, setShowConTrolVolume] = useState(false);
   const [showListSong, setShowListSong] = useState(false);
 
   const audioRef = useRef<any>();
@@ -70,6 +69,7 @@ const Player = () => {
 
   useEffect(() => {
     if (!audioRef.current || !songIds || !data?.song?.streamUrls) return;
+
     audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
     audioRef.current.play();
   }, [songIds, data, songKey]);
@@ -77,18 +77,13 @@ const Player = () => {
   useEffect(() => {
     if (data?.song?.streamUrls?.length === 0) {
       toast.error("Không tìm thấy bài hát!");
-      if (currentIndex === songIds.length) {
+      if (currentIndex === songIds.length - 1) {
         return;
       }
 
-      return handleNextSong();
+      return setCurrentIndex((prev: number) => prev + 1);
     }
   }, [data?.song?.streamUrls]);
-
-  useEffect(() => {
-    audioRef?.current?.pause();
-    setCurrentTime(0);
-  }, [currentIndex]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -99,18 +94,6 @@ const Player = () => {
     if (!audioRef.current) return;
     audioRef.current.volume = Number(volume) / 100;
   }, [volume]);
-
-  useEffect(() => {
-    window.addEventListener("click", () => {
-      setShowConTrolVolume(false);
-    });
-
-    return () => {
-      window.removeEventListener("click", () => {
-        setShowConTrolVolume(false);
-      });
-    };
-  }, []);
 
   useEffect(() => {
     progressRef.current?.addEventListener("mousedown", () => {
@@ -135,6 +118,12 @@ const Player = () => {
     localStorage.setItem("nct-current-index", JSON.stringify(currentIndex));
     localStorage.setItem("nct-volume", JSON.stringify(volume));
   }, [songIds, currentIndex, volume]);
+
+  useEffect(() => {
+    if (!data) {
+      audioRef?.current?.pause();
+    }
+  }, [data]);
 
   const handlePlayPause = useCallback(() => {
     if (playing) {
@@ -162,36 +151,26 @@ const Player = () => {
     handleNextSong();
   };
 
-  const handleNextSong = useCallback(
-    () =>
-      setCurrentIndex((prev: number) => {
-        if (prev >= songIds.length - 1) {
-          return prev;
-        }
+  const handleNextSong = () =>
+    setCurrentIndex((prev: number) => {
+      if (prev >= songIds.length - 1) {
+        return 0;
+      }
 
-        return prev + 1;
-      }),
-    []
-  );
+      return prev + 1;
+    });
 
-  const handlePrevSong = useCallback(
-    () =>
-      setCurrentIndex((prev: number) => {
-        if (prev <= 0) {
-          return prev;
-        }
+  const handlePrevSong = () =>
+    setCurrentIndex((prev: number) => {
+      if (prev <= 0) {
+        return songIds.length - 1;
+      }
 
-        return prev - 1;
-      }),
-    []
-  );
+      return prev - 1;
+    });
 
   const toggleListSong = useCallback(() => {
     setShowListSong((prev) => !prev);
-  }, []);
-
-  const toggleVolume = useCallback(() => {
-    setShowConTrolVolume((prev) => !prev);
   }, []);
 
   return (
@@ -199,10 +178,10 @@ const Player = () => {
       className="flex-col justify-between h-full flex"
       onClick={(e) => {
         e.stopPropagation();
-        setShowConTrolVolume(false);
       }}
     >
       <PlayerThumnail
+        id={data?.song?.key}
         thumbnail={data?.song?.thumbnail}
         title={data?.song?.title}
         artists={data?.song?.artists?.map((item: any) => item.name).join(", ")}
@@ -210,7 +189,6 @@ const Player = () => {
         setPlayer={setPlayerMemo}
         showListSong={showListSong}
         songMemo={songMemo}
-        key={"player"}
       />
 
       <Controler
@@ -224,12 +202,10 @@ const Player = () => {
         handlePlayPause={handlePlayPause}
         handleSeekTime={handleSeekTime}
         playing={playing}
-        showControlVolume={showControlVolume}
         showListSong={showListSong}
         volume={volume}
         streamUrls={data?.song?.streamUrls[0]?.streamUrl}
         toggleListSong={toggleListSong}
-        toggleVolumeControl={toggleVolume}
       />
 
       <audio
