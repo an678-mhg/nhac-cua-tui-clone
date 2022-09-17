@@ -18,6 +18,7 @@ import Results from "./pages/Search/Results";
 import Songs from "./pages/Explore/Songs";
 import SongDetails from "./pages/Detail/SongDetails";
 import Top100 from "./pages/ListenToday/Top100";
+import SignIn from "./pages/SingIn";
 
 function App() {
   const { player, close } = useStore();
@@ -45,6 +46,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
         <Route path="/search" element={<Search />} />
         <Route path="/results" element={<Results />} />
         <Route path="/PLAYLIST/:key" element={<PlaylistsDetails />} />

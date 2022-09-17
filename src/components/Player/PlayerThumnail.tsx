@@ -55,9 +55,11 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
                 {artists}
               </p>
 
-              <Link to={`/SONG/${id}`} className="text-blue-500 text-sm mt-2">
-                Xem lời bài hát
-              </Link>
+              {title && artists && (
+                <Link to={`/SONG/${id}`} className="text-blue-500 text-sm mt-2">
+                  Xem lời bài hát
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -19,7 +19,9 @@ const Topics = () => {
   return (
     <MainLayout>
       {!data ? (
-        <SkeletonExplore radio="1/1" />
+        <div className="p-4">
+          <SkeletonExplore radio="1/1" />
+        </div>
       ) : (
         <div className="px-4">
           <div>

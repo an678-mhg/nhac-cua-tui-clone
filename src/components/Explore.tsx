@@ -53,9 +53,7 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
                   Math.ceil(data?.slice(-1)?.[0].total / 36) > size
                 }
                 loader={
-                  <div className="pt-3 flex justify-center">
-                    <CircularProgress />
-                  </div>
+                  <div className="pt-3 flex justify-center">Loading....</div>
                 }
                 endMessage={
                   <p className="text-center mt-6 text-black w-full">
