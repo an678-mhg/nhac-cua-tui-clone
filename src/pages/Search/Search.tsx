@@ -3,7 +3,7 @@ import MainLayout from "../../layout/MainLayout";
 import { BsSearch } from "react-icons/bs";
 import useSWR from "swr";
 import { getTopKeyword } from "../../apis/search";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import { getTrendingArtists } from "../../apis/artist";
 import TrendingItem from "../../components/Search/TrendingItem";
 import { useNavigate } from "react-router-dom";

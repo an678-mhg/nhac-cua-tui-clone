@@ -4,7 +4,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { getLyric, getSong } from "../../apis/song";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
 import { PlayerContext } from "../../context/PlayerContext";
 import MainLayout from "../../layout/MainLayout";
@@ -12,7 +12,7 @@ import MainLayout from "../../layout/MainLayout";
 const SongDetails = () => {
   const { key } = useParams();
 
-  const { setSongId, setCurrentIndex } = useContext(PlayerContext);
+  const { setSongId, setCurrentIndex, songIds } = useContext(PlayerContext);
 
   const { data, error } = useSWR(`song-${key}`, () => getSong(String(key)));
   const { data: lyric, error: errorLyric } = useSWR(`lyric-${key}`, () =>
@@ -27,9 +27,19 @@ const SongDetails = () => {
     return <Error />;
   }
 
+  const handlePlaySong = () => {
+    const indexSong = songIds.findIndex((item) => item.key === data?.song?.key);
+    if (indexSong) {
+      setCurrentIndex(indexSong);
+    } else {
+      setSongId([data.song]);
+      setCurrentIndex(0);
+    }
+  };
+
   return (
     <MainLayout>
-      {!data ? (
+      {!data || !lyric ? (
         <DetailSkeleton />
       ) : (
         <div className="px-4">
@@ -39,10 +49,7 @@ const SongDetails = () => {
                 <img className="rounded-md" src={data?.song?.thumbnail} />
                 <div className="absolute inset-0 rounded-md p-4">
                   <AiFillPlayCircle
-                    onClick={() => {
-                      setSongId([data.song]);
-                      setCurrentIndex(0);
-                    }}
+                    onClick={handlePlaySong}
                     className="text-white w-10 h-10 absolute bottom-[16px] right-[16px] cursor-pointer"
                   />
                 </div>

@@ -11,10 +11,10 @@ const Footer = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/an678-mhg/NextComics"
+          href="https://github.com/an678-mhg/NCT-clone"
           className="hover:text-black transition duration-300"
         >
-          <FaGithub size={25} />
+          <FaGithub className="text-black" size={25} />
         </a>
         <a
           className="hover:text-blue-500 transition duration-300"
@@ -22,7 +22,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           href="https://www.facebook.com/an70008"
         >
-          <FaFacebook size={25} />
+          <FaFacebook className="text-blue-500" size={25} />
         </a>
         <a
           className="hover:text-red-500 transition duration-300"
@@ -30,7 +30,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           href="https://www.youtube.com/channel/UCJeY2ZgtRzY3NSiLZYu9ddg"
         >
-          <AiFillYoutube size={25} />
+          <AiFillYoutube className="text-red-500" size={25} />
         </a>
       </div>
     </div>

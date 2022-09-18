@@ -4,7 +4,7 @@ import Slider from "../components/Slider";
 import { TopicEvent } from "../model";
 import Banner from "../components/Slider/Banner";
 import WrapSong from "../components/Song/WrapSong";
-import Error from "../components/Error";
+import Error from "../components/Shared/Error";
 import HomeSkeleton from "../components/Skeleton/HomeSkeleton";
 import { getHome } from "../apis/home";
 

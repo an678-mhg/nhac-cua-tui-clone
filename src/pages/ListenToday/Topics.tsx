@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { getTopics } from "../../apis/topic";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import SkeletonExplore from "../../components/Skeleton/SkeletonExplore";
 import ItemCmp from "../../components/Slider/Item";
 import GridLayout from "../../layout/GridLayout";

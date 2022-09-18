@@ -3,15 +3,8 @@ import { RiSearchLine } from "react-icons/ri";
 import { HiChartSquareBar } from "react-icons/hi";
 import { ImHeadphones } from "react-icons/im";
 import { FaRegCompass } from "react-icons/fa";
-import { SiAuth0 } from "react-icons/si";
 
 export const sidebar = [
-  {
-    name: "Đăng nhập",
-    path: "/sign-in",
-    icon: SiAuth0,
-    child: null,
-  },
   {
     name: "Tìm Kiếm",
     path: "/search",
@@ -48,19 +41,9 @@ export const sidebar = [
     ],
   },
   {
-    name: "Nghe Gì Hôm Nay",
-    path: null,
+    name: "Chủ đề",
+    path: "/topics",
     icon: ImHeadphones,
-    child: [
-      {
-        name: "Chủ Đề",
-        path: "/topics",
-      },
-      {
-        name: "Top 100",
-        path: "/top-100",
-      },
-    ],
   },
   {
     name: "BXH",

@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://proxy-nct.vercel.app/",
+  baseURL: import.meta.env.VITE_PROXY_URL,
 });

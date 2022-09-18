@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import MainLayout from "../layout/MainLayout";
-import { img404 } from "../utils/contants";
+import MainLayout from "../../layout/MainLayout";
+import { img404 } from "../../utils/contants";
 
 const Error = () => {
   return (

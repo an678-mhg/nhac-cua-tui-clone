@@ -3,7 +3,7 @@ import { AiOutlineDown } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { getTopicDetail } from "../../apis/topic";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import TopicDetailsSkeleton from "../../components/Skeleton/TopicDetailsSkeleton";
 import ItemCmp from "../../components/Slider/Item";
 import GridLayout from "../../layout/GridLayout";

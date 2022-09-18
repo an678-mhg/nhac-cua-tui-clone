@@ -1,4 +1,4 @@
-import Explore from "../../components/Explore";
+import Explore from "../../components/Shared/Explore";
 
 const Songs = () => {
   return <Explore type="song" name="Bài Hát" />;

@@ -10,7 +10,7 @@ import PlaylistsDetails from "./pages/Detail/PlaylistsDetails";
 import VideoDetails from "./pages/Detail/VideoDetails";
 import useStore from "./zustand/menu";
 import ArtistDetails from "./pages/Detail/ArtistDetails";
-import Error from "./components/Error";
+import Error from "./components/Shared/Error";
 import Search from "./pages/Search/Search";
 import Topics from "./pages/ListenToday/Topics";
 import TopicDetails from "./pages/Detail/TopicDetails";
@@ -18,10 +18,16 @@ import Results from "./pages/Search/Results";
 import Songs from "./pages/Explore/Songs";
 import SongDetails from "./pages/Detail/SongDetails";
 import Top100 from "./pages/ListenToday/Top100";
-import SignIn from "./pages/SingIn";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./config/firebase";
+import authStore from "./zustand/auth";
+import Profile from "./pages/Profile";
+import Loading from "./components/Shared/Loading";
+import History from "./pages/History";
 
 function App() {
   const { player, close } = useStore();
+  const { setUser, currentUser } = authStore();
   const { isPC } = useInnerWidth();
 
   const location = useLocation();
@@ -42,11 +48,31 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        return;
+      }
+
+      setUser(null);
+    });
+
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  if (typeof currentUser === "undefined") {
+    return <Loading />;
+  }
+
   return (
-    <>
+    <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
         <Route path="/results" element={<Results />} />
         <Route path="/PLAYLIST/:key" element={<PlaylistsDetails />} />
@@ -68,11 +94,11 @@ function App() {
           right: isPC ? "0px" : player ? "0" : "-100%",
           transition: "all linear 0.3s",
         }}
-        className={`scroll-none overflow-y-scroll md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-4 fixed top-0 bottom-0 z-[9999] bg-white`}
+        className={`scroll-none overflow-y-scroll md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-4 fixed top-0 bottom-0 z-[9998] bg-white`}
       >
         <Player />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -193,3 +193,27 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
 }
 
+.modalFadeIn {
+  animation: fadeIn ease-in-out 0.6s;
+}
+
+.modalOpacity {
+  animation: opacityNe ease-in-out 0.6s;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+  } to {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes opacityNe {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+

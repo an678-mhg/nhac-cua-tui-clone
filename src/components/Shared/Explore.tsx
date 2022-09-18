@@ -1,12 +1,12 @@
-import MainLayout from "../layout/MainLayout";
-import GridLayout from "../layout/GridLayout";
-import ItemCmp from "./Slider/Item";
+import MainLayout from "../../layout/MainLayout";
+import GridLayout from "../../layout/GridLayout";
+import ItemCmp from "../Slider/Item";
 import { FC } from "react";
 import useSWRInfinite from "swr/infinite";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Error from "./Error";
-import SkeletonExplore from "./Skeleton/SkeletonExplore";
-import { getExplore } from "../apis/explore";
+import SkeletonExplore from "../Skeleton/SkeletonExplore";
+import { getExplore } from "../../apis/explore";
 import { CircularProgress } from "react-cssfx-loading";
 
 interface ExploreProps {

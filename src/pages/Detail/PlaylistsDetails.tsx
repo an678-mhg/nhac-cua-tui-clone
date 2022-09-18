@@ -3,7 +3,7 @@ import useSWR from "swr";
 import MainLayout from "../../layout/MainLayout";
 import dayjs from "dayjs";
 import WrapSong from "../../components/Song/WrapSong";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
 import { getPlaylistDetail } from "../../apis/playlist";
 

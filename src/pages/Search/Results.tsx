@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { searchKeyword } from "../../apis/search";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import ResultsSkeleton from "../../components/Skeleton/ResultsSkeleton";
 import Slider from "../../components/Slider";
 import WrapSong from "../../components/Song/WrapSong";

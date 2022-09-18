@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { getExploreArtists } from "../../apis/explore";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import SkeletonExplore from "../../components/Skeleton/SkeletonExplore";
 import GridLayout from "../../layout/GridLayout";
 import MainLayout from "../../layout/MainLayout";

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { getArtistDetails } from "../../apis/artist";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import ArtistSkeletonDetails from "../../components/Skeleton/ArtistSkeletonDetails";
 import Slider from "../../components/Slider";
 import WrapSong from "../../components/Song/WrapSong";

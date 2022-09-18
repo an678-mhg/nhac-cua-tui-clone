@@ -8,9 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
+    "firebase": "^9.10.0",
     "react": "^18.0.0",
     "react-cssfx-loading": "^2.1.0",
     "react-dom": "^18.0.0",

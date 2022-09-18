@@ -6,7 +6,7 @@ interface SidebarItemType {
   name: string;
   path: string | null;
   icon: Function;
-  child:
+  child?:
     | {
         name: string;
         path: string;
@@ -59,7 +59,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
             <li
               onClick={(e) => e.stopPropagation()}
               key={p.name}
-              className={`pl-5 ${
+              className={`pl-7 ${
                 location.pathname === p.path && "bg-gray-200 rounded-sm"
               }`}
             >

@@ -3,7 +3,7 @@ import useSWR from "swr";
 import MainLayout from "../../layout/MainLayout";
 import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
-import Error from "../../components/Error";
+import Error from "../../components/Shared/Error";
 import VideoSkeletonDetails from "../../components/Skeleton/VideoSkeletonDetails";
 import { getVideoDetail } from "../../apis/video";
 
