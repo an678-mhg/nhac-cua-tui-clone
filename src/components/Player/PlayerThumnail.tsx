@@ -2,7 +2,7 @@ import React, { FC, memo } from "react";
 import { GrClose } from "react-icons/gr";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { Song } from "../../model";
+import { Song } from "../../context/PlayerContext";
 import { imgNotFound } from "../../utils/contants";
 import ListSong from "./ListSong";
 

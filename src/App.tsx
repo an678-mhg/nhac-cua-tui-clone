@@ -26,6 +26,7 @@ import Loading from "./components/Shared/Loading";
 import History from "./pages/History";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import musicStore from "./zustand/music";
+import BXH from "./pages/BXH";
 
 function App() {
   const { player, close } = useStore();
@@ -86,6 +87,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/bxh" element={<BXH />} />
         <Route path="/history" element={<History />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />

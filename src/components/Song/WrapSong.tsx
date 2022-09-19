@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PlayerContext } from "../../context/PlayerContext";
-import { Song } from "../../model";
+import { Song } from "../../context/PlayerContext";
 import useStore from "../../zustand/menu";
 import SongItem from "./SongItem";
 

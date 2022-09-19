@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useContext, useEffect } from "react";
 import { PlayerContext } from "../../context/PlayerContext";
-import { Song } from "../../model";
+import { Song } from "../../context/PlayerContext";
 import SongItem from "./SongItem";
 
 interface ListSongProps {

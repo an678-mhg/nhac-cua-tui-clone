@@ -1,4 +1,4 @@
-import { Song } from "../model";
+import { Song } from "../context/PlayerContext";
 
 export const addMusicFromLocal = (song: Song): void => {
   let historyMusic: Song[] =

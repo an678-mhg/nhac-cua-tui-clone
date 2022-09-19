@@ -1,5 +1,5 @@
 import create from "zustand";
-import { Song } from "../model";
+import { Song } from "../context/PlayerContext";
 
 export interface songStoreItem extends Song {
   uid: string;

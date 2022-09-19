@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Song } from "../../model";
+import { Song } from "../../context/PlayerContext";
 import { imgNotFound } from "../../utils/contants";
 
 interface SongItemProps {

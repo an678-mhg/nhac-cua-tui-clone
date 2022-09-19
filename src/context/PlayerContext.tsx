@@ -1,5 +1,12 @@
 import React, { createContext, FC, useState } from "react";
-import { Artist, Song } from "../model";
+import { Artist } from "../model";
+
+export interface Song {
+  title: string;
+  thumbnail: string;
+  artists: Artist[];
+  key: string;
+}
 
 interface PlayerContextState {
   songIds: Song[];
