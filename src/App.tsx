@@ -72,6 +72,7 @@ function App() {
       }
 
       setUser(null);
+      setSongs([]);
     });
 
     return () => {
