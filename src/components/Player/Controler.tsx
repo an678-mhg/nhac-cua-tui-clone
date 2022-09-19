@@ -1,18 +1,21 @@
-import { FC, memo } from "react";
-import { AiOutlineDownload, AiOutlinePause } from "react-icons/ai";
+import { FC, memo, useRef, useContext } from "react";
+import { AiOutlineHeart, AiOutlinePause } from "react-icons/ai";
 import {
   BsFillPlayFill,
   BsFillVolumeUpFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
+import { FcLike } from "react-icons/fc";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
-import { forceDownloadFile, formatTime } from "../../utils/contants";
+import { PlayerContext } from "../../context/PlayerContext";
+import { formatTime } from "../../utils/contants";
+import musicStore from "../../zustand/music";
+import { CircularProgress } from "react-cssfx-loading";
 
 interface ControlerProps {
   toggleListSong: () => void;
   showListSong: boolean;
   volume: number;
-  streamUrls?: string;
   handleVolumeChange: (e: any) => void;
   currentTime: number;
   progressRef: any;
@@ -23,13 +26,15 @@ interface ControlerProps {
   handlePlayPause: () => void;
   playing: boolean;
   handleNextSong: () => void;
+  setVolume: Function;
+  handleAddSongFavourite: Function;
+  loading: boolean;
 }
 
 const Controler: FC<ControlerProps> = ({
   volume,
   toggleListSong,
   showListSong,
-  streamUrls,
   handleVolumeChange,
   currentTime,
   progressRef,
@@ -40,13 +45,29 @@ const Controler: FC<ControlerProps> = ({
   handleSeekTime,
   playing,
   duration,
+  setVolume,
+  handleAddSongFavourite,
+  loading,
 }) => {
+  const volumeRef = useRef(0);
+
+  const { songIds, currentIndex } = useContext(PlayerContext);
+  const { songs } = musicStore();
+
   return (
     <div className="pb-5">
       <div className="flex items-center justify-between relative">
         <div
           onClick={(e) => {
             e.stopPropagation();
+            if (Number(volume) === 0) {
+              if (volumeRef.current) {
+                setVolume(volumeRef.current);
+              }
+            } else {
+              volumeRef.current = volume;
+              setVolume(0);
+            }
           }}
           className="cursor-pointer volume-icon"
         >
@@ -73,10 +94,15 @@ const Controler: FC<ControlerProps> = ({
         >
           {showListSong ? "Tắt Danh Sách Phát" : "Mở Danh Sách Phát"}
         </button>
-        <AiOutlineDownload
-          onClick={() => forceDownloadFile(streamUrls || "")}
-          className="lg:w-5 lg:h-5 w-6 h-6 cursor-pointer"
-        />
+        <button onClick={() => handleAddSongFavourite()}>
+          {loading ? (
+            <CircularProgress width="20px" height="20px" />
+          ) : songs?.some((item) => item.key === songIds[currentIndex].key) ? (
+            <FcLike className="lg:w-5 lg:h-5 w-6 h-6 cursor-pointer" />
+          ) : (
+            <AiOutlineHeart className="lg:w-5 lg:h-5 w-6 h-6 cursor-pointer" />
+          )}
+        </button>
       </div>
 
       <div className="mt-8">

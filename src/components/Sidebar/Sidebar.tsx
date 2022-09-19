@@ -35,7 +35,7 @@ const Sidebar = () => {
         ) : (
           <button
             onClick={() => setShowFormLogin(true)}
-            className="mt-5 px-4 py-2 text-sm bg-gray-200 w-full text-gray-600 rounded-md"
+            className="mt-5 px-4 py-2 text-sm bg-gray-200 w-full text-gray-600"
           >
             Đăng nhập
           </button>

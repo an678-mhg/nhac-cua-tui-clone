@@ -14,10 +14,16 @@ import { getSong } from "../../apis/song";
 import Controler from "./Controler";
 import PlayReview from "../Song/PlayReview";
 import { toast } from "react-hot-toast";
+import { addMusicFromLocal } from "../../utils/history";
+import musicStore from "../../zustand/music";
+import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../config/firebase";
+import authStore from "../../zustand/auth";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
   const { setPlayer, player } = useStore();
+  const { currentUser } = authStore();
 
   const songMemo = useMemo(() => {
     return songIds;
@@ -27,6 +33,9 @@ const Player = () => {
     (index: number) => setCurrentIndex(index),
     []
   );
+
+  const { songs, addSong, deleteSong } = musicStore();
+  const [loading, setLoading] = useState(false);
 
   const setPlayerMemo = useCallback(() => setPlayer(), [player]);
 
@@ -69,7 +78,6 @@ const Player = () => {
 
   useEffect(() => {
     if (!audioRef.current || !songIds || !data?.song?.streamUrls) return;
-
     audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
     audioRef.current.play();
   }, [songIds, data, songKey]);
@@ -100,6 +108,12 @@ const Player = () => {
       window.addEventListener("mousemove", handleSeekTime);
     });
   }, []);
+
+  useEffect(() => {
+    if (songIds[currentIndex] && songIds[currentIndex]?.key) {
+      addMusicFromLocal(songIds[currentIndex]);
+    }
+  }, [currentIndex]);
 
   useEffect(() => {
     window.addEventListener("mouseup", () => {
@@ -173,6 +187,30 @@ const Player = () => {
     setShowListSong((prev) => !prev);
   }, []);
 
+  const handleAddSongFavourite = async () => {
+    if (!currentUser)
+      return toast.error("Cần đăng nhập để dùng tính năng này!");
+    const checkExist = songs.find(
+      (item) => item.key === songIds[currentIndex].key
+    );
+    if (!checkExist) {
+      setLoading(true);
+      try {
+        const doc = await addDoc(collection(db, "favourite"), {
+          ...songIds[currentIndex],
+          uid: currentUser?.uid,
+        });
+        addSong({ ...songIds[currentIndex], uid: currentUser.uid, id: doc.id });
+      } catch (error) {
+        toast.error("Thêm bài hát vào danh sách yêu thích thất bại!");
+      }
+      setLoading(false);
+    } else {
+      deleteDoc(doc(db, "favourite", checkExist?.id));
+      deleteSong(checkExist);
+    }
+  };
+
   return (
     <div
       className="flex-col justify-between h-full flex"
@@ -192,6 +230,9 @@ const Player = () => {
       />
 
       <Controler
+        loading={loading}
+        handleAddSongFavourite={handleAddSongFavourite}
+        setVolume={setVolume}
         audioRef={audioRef}
         progressRef={progressRef}
         currentTime={currentTime}
@@ -204,7 +245,6 @@ const Player = () => {
         playing={playing}
         showListSong={showListSong}
         volume={volume}
-        streamUrls={data?.song?.streamUrls[0]?.streamUrl}
         toggleListSong={toggleListSong}
       />
 

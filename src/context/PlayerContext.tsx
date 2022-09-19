@@ -1,5 +1,5 @@
 import React, { createContext, FC, useState } from "react";
-import { Song } from "../model";
+import { Artist, Song } from "../model";
 
 interface PlayerContextState {
   songIds: Song[];

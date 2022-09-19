@@ -12,7 +12,10 @@ const Modal = ({
       onClick={handleClose}
       className="fixed inset-0 flex items-center justify-center z-[9999] bg-opacity-50 bg-black modalOpacity"
     >
-      <div className="p-5" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="w-[400px] max-w-[calc(100%-32px)]"
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </div>
     </div>

@@ -8,7 +8,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tippyjs/react": "^4.2.6",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",

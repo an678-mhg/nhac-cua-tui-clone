@@ -1,7 +1,7 @@
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHistory, AiOutlineHome } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import { HiChartSquareBar } from "react-icons/hi";
-import { ImHeadphones } from "react-icons/im";
+import { ImHeadphones, ImProfile } from "react-icons/im";
 import { FaRegCompass } from "react-icons/fa";
 
 export const sidebar = [
@@ -50,5 +50,10 @@ export const sidebar = [
     path: "/bxh",
     icon: HiChartSquareBar,
     child: null,
+  },
+  {
+    name: "Lịch sử",
+    path: "/history",
+    icon: AiOutlineHistory,
   },
 ];

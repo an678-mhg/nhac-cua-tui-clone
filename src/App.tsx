@@ -19,18 +19,31 @@ import Songs from "./pages/Explore/Songs";
 import SongDetails from "./pages/Detail/SongDetails";
 import Top100 from "./pages/ListenToday/Top100";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./config/firebase";
+import { auth, db } from "./config/firebase";
 import authStore from "./zustand/auth";
 import Profile from "./pages/Profile";
 import Loading from "./components/Shared/Loading";
 import History from "./pages/History";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import musicStore from "./zustand/music";
 
 function App() {
   const { player, close } = useStore();
   const { setUser, currentUser } = authStore();
   const { isPC } = useInnerWidth();
+  const { setSongs, songs } = musicStore();
 
   const location = useLocation();
+
+  const getAllSongFavourite = async (uid: string) => {
+    const results: any[] = [];
+    const q = query(collection(db, "favourite"), where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      results.push({ ...doc.data(), id: doc.id });
+    });
+    return results;
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,9 +62,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
+        const resultSong = await getAllSongFavourite(user.uid);
+        setSongs(resultSong);
         return;
       }
 
