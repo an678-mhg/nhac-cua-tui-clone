@@ -15,7 +15,7 @@ const BXHItem: React.FC<BXHItemProps> = ({ data, index, handlePlayAll }) => {
           {index + 1}
         </div>
 
-        <div className="ml-4 bg-gray-100 w-full rounded-md p-2 flex">
+        <div className="ml-4 bg-gray-100 w-full rounded-md p-2 flex flex-1">
           <div className="w-10 h-10 rounded-md overflow-hidden">
             <LazyLoadImage
               effect="blur"
@@ -26,8 +26,8 @@ const BXHItem: React.FC<BXHItemProps> = ({ data, index, handlePlayAll }) => {
             />
           </div>
           <div className="flex-1 ml-3">
-            <p className="text-sm font-medium">{data?.title}</p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-sm font-medium line-clamp-1">{data?.title}</p>
+            <p className="text-xs text-gray-400 mt-1 line-clamp-1">
               {data?.artists?.map((item: any) => item.name).join(", ")}
             </p>
           </div>
