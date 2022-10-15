@@ -11,7 +11,7 @@ const Footer = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/an678-mhg/NCT-clone"
+          href="#"
           className="hover:text-black transition duration-300"
         >
           <FaGithub className="text-black" size={25} />
@@ -20,7 +20,7 @@ const Footer = () => {
           className="hover:text-blue-500 transition duration-300"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.facebook.com/an70008"
+          href="#"
         >
           <FaFacebook className="text-blue-500" size={25} />
         </a>
@@ -28,7 +28,7 @@ const Footer = () => {
           className="hover:text-red-500 transition duration-300"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.youtube.com/channel/UCJeY2ZgtRzY3NSiLZYu9ddg"
+          href="#"
         >
           <AiFillYoutube className="text-red-500" size={25} />
         </a>
