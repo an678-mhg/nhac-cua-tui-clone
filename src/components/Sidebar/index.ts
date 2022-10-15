@@ -9,6 +9,7 @@ export const sidebar = [
     name: "Tìm Kiếm",
     path: "/search",
     icon: RiSearchLine,
+    background: "#2ecc71",
     child: null,
   },
   {
@@ -16,6 +17,7 @@ export const sidebar = [
     path: "/",
     icon: AiOutlineHome,
     child: null,
+    background: "#3498db",
   },
   {
     name: "Khám Phá",
@@ -39,17 +41,20 @@ export const sidebar = [
         path: "/artist",
       },
     ],
+    background: "#f1c40f",
   },
   {
     name: "Chủ đề",
     path: "/topics",
     icon: ImHeadphones,
+    background: "#9b59b6",
   },
   {
     name: "BXH",
     path: "/bxh",
     icon: HiChartSquareBar,
     child: null,
+    background: "#e67e22",
   },
   {
     name: "Lịch sử",

@@ -15,13 +15,13 @@ const SongItem: FC<SongItemProps> = ({ item, onClick, index }) => {
       className="flex items-start p-2 rounded-md hover:bg-gray-200 transition-colors cursor-pointer"
       onClick={() => onClick(index)}
     >
-      <div className="w-[54px] h-[54px] shadow-md">
+      <div className="w-[54px] h-[54px]">
         <LazyLoadImage
           src={item.thumbnail || imgNotFound}
           alt={item.title}
           width="100%"
           height="100%"
-          className="rounded-md border"
+          className="rounded-md"
           effect="blur"
         />
       </div>

@@ -6,6 +6,7 @@ interface SidebarItemType {
   name: string;
   path: string | null;
   icon: Function;
+  background?: string;
   child?:
     | {
         name: string;
@@ -31,6 +32,8 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
 
   const location = useLocation();
 
+  console.log(item.background);
+
   return (
     <li
       className={`py-2 pl-4 sidebar-parent ${
@@ -42,9 +45,12 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
         to={item.path ? item.path : "#"}
         className="flex items-center justify-between"
       >
-        <div className="flex items-center">
-          <item.icon className={`w-5 h-5 mr-2 text-blue-500`} />
-          <span>{item.name}</span>
+        <div
+          className="flex items-center font-semibold"
+          style={{ color: item.background }}
+        >
+          <item.icon className={`w-5 h-5 mr-2`} />
+          <span className="text-black font-normal">{item.name}</span>
         </div>
         {item.child && (
           <span>

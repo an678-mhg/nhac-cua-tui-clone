@@ -28,7 +28,7 @@ export const forceDownloadFile = (url: string) => {
 };
 
 export const imgNotFound =
-  "https://thumbs.dreamstime.com/b/no-image-available-icon-vector-illustration-flat-design-140476186.jpg";
+  "https://stc-id.nixcdn.com/v12/static/media/default_song_no_cover.a876da66.png";
 
 export const img404 =
   "https://raw.githubusercontent.com/an678-mhg/NextComics/main/public/not-found.png";

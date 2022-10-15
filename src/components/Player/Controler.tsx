@@ -82,6 +82,7 @@ const Controler: FC<ControlerProps> = ({
             className="volume-control absolute left-[-65px] top-[-75px] bg-gray-200 flex items-center justify-center p-2 rounded-md rotate-[-90deg]"
           >
             <input
+              id="slider"
               value={volume}
               onChange={(e) => handleVolumeChange(e)}
               type="range"

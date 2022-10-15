@@ -1,18 +1,14 @@
 import dayjs from "dayjs";
-import { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { getLyric, getSong } from "../../apis/song";
 import Error from "../../components/Shared/Error";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
-import { PlayerContext } from "../../context/PlayerContext";
 import MainLayout from "../../layout/MainLayout";
 
 const SongDetails = () => {
   const { key } = useParams();
-
-  const { setSongId, setCurrentIndex, songIds } = useContext(PlayerContext);
 
   const { data, error } = useSWR(`song-${key}`, () => getSong(String(key)));
   const { data: lyric, error: errorLyric } = useSWR(`lyric-${key}`, () =>
@@ -27,16 +23,6 @@ const SongDetails = () => {
     return <Error />;
   }
 
-  const handlePlaySong = () => {
-    const indexSong = songIds.findIndex((item) => item.key === data?.song?.key);
-    if (indexSong) {
-      setCurrentIndex(indexSong);
-    } else {
-      setSongId([data.song]);
-      setCurrentIndex(0);
-    }
-  };
-
   return (
     <MainLayout>
       {!data || !lyric ? (
@@ -47,12 +33,6 @@ const SongDetails = () => {
             <div className="flex items-center justify-center md:w-auto w-full">
               <div className="w-[238px] max-w-full aspect-[1/1] bg-gray-400 rounded-md relative">
                 <img className="rounded-md" src={data?.song?.thumbnail} />
-                <div className="absolute inset-0 rounded-md p-4">
-                  <AiFillPlayCircle
-                    onClick={handlePlaySong}
-                    className="text-white w-10 h-10 absolute bottom-[16px] right-[16px] cursor-pointer"
-                  />
-                </div>
               </div>
             </div>
 

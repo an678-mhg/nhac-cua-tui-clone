@@ -7,6 +7,7 @@ import Slider from "../../components/Slider";
 import WrapSong from "../../components/Song/WrapSong";
 import MainLayout from "../../layout/MainLayout";
 import { ArtistDetails as ArtistDetailsType } from "../../model/artitst";
+import { imgNotFound } from "../../utils/contants";
 
 const ArtistDetails = () => {
   const { shortLink } = useParams();
@@ -37,7 +38,11 @@ const ArtistDetails = () => {
 
             <div className="absolute left-0 bottom-0 m-4 pr-4 rounded-full shadow-md flex items-center bg-black">
               <div className="w-12 h-12 rounded-full overflow-hidden">
-                <img className="rounded-full" src={data?.artist?.imageUrl} />
+                <img
+                  alt={data?.artist?.name}
+                  className="rounded-full"
+                  src={data?.artist?.imageUrl}
+                />
               </div>
               <p className="text-white ml-2 font-semibold">
                 {data?.artist?.name}

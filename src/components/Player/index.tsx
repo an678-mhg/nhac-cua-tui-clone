@@ -69,6 +69,16 @@ const Player = () => {
     const max = width + left;
     const min = left;
 
+    if (clientX >= max) {
+      audioRef.current.currentTime = audioRef.current.duration;
+      return setCurrentTime(audioRef.current.duration);
+    }
+
+    if (clientX <= min) {
+      audioRef.current.currentTime = 0;
+      return setCurrentTime(0);
+    }
+
     if (clientX <= max && clientX >= min) {
       const percent = (clientX - left) / width;
       audioRef.current.currentTime = audioRef.current.duration * percent;

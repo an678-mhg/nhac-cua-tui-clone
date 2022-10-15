@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
 interface LogoProps {
   width: string | number;
@@ -7,7 +8,7 @@ interface LogoProps {
 
 const Logo: FC<LogoProps> = ({ width, height }) => {
   return (
-    <div className="w-full px-4">
+    <Link to="/" className="w-full px-4 block">
       <div
         style={{
           width: width,
@@ -17,7 +18,7 @@ const Logo: FC<LogoProps> = ({ width, height }) => {
       >
         <h1 className="font-semibold text-white">NCA</h1>
       </div>
-    </div>
+    </Link>
   );
 };
 
