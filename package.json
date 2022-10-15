@@ -20,7 +20,6 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.5",
     "react-router-dom": "^6.3.0",
-    "react-tuby": "^0.1.24",
     "swiper": "^8.3.2",
     "swr": "^1.3.0",
     "zustand": "^4.0.0"

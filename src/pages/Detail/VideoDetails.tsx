@@ -28,17 +28,10 @@ const VideoDetails = () => {
         <div className="px-4">
           <div className="w-full aspect-video">
             {data?.video?.streamUrls && (
-              <Player
-                primaryColor="#3B82F6"
-                src={data?.video?.streamUrls
-                  ?.filter((item: any) => item.streamUrl.length > 0)
-                  .map((item: any) => {
-                    return {
-                      quality: item.quality,
-                      url: item.streamUrl,
-                    };
-                  })}
-                poster={data?.video?.thumbnail}
+              <video
+                className="w-full h-full"
+                controls
+                src={data?.video?.streamUrls[0]?.streamUrl}
               />
             )}
           </div>
