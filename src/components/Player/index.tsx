@@ -95,11 +95,6 @@ const Player = () => {
   useEffect(() => {
     if (data?.song?.streamUrls?.length === 0) {
       toast.error("Không tìm thấy bài hát!");
-      if (currentIndex === songIds.length - 1) {
-        return;
-      }
-
-      return setCurrentIndex((prev: number) => prev + 1);
     }
   }, [data?.song?.streamUrls]);
 
@@ -115,6 +110,7 @@ const Player = () => {
 
   useEffect(() => {
     progressRef.current?.addEventListener("mousedown", () => {
+      document.body.style.userSelect = "none";
       window.addEventListener("mousemove", handleSeekTime);
     });
   }, []);
@@ -127,6 +123,7 @@ const Player = () => {
 
   useEffect(() => {
     window.addEventListener("mouseup", () => {
+      document.body.style.userSelect = "auto";
       window.removeEventListener("mousemove", handleSeekTime);
     });
 
@@ -150,6 +147,10 @@ const Player = () => {
   }, [data]);
 
   const handlePlayPause = useCallback(() => {
+    if (data?.song?.streamUrls?.length === 0) {
+      toast.error("Không tìm thấy bài hát!");
+      return;
+    }
     if (playing) {
       audioRef.current.pause();
       setPlaying(false);

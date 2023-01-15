@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from "react";
+import { FC, MouseEvent } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 
@@ -31,8 +31,6 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
   };
 
   const location = useLocation();
-
-  console.log(item.background);
 
   return (
     <li

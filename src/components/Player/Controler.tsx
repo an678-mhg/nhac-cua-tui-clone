@@ -79,7 +79,7 @@ const Controler: FC<ControlerProps> = ({
 
           <div
             onClick={(e) => e.stopPropagation()}
-            className="volume-control absolute left-[-65px] top-[-75px] bg-gray-200 flex items-center justify-center p-2 rounded-md rotate-[-90deg]"
+            className="volume-control absolute left-[-70px] top-[-90px] bg-gray-200 flex items-center justify-center p-4 rounded-md rotate-[-90deg]"
           >
             <input
               id="slider"
@@ -110,7 +110,7 @@ const Controler: FC<ControlerProps> = ({
         <div className="flex items-center justify-between text-gray-400 text-xs font-normal">
           <p style={{ userSelect: "none" }}>{formatTime(currentTime)}</p>
           <div
-            className="flex-1 py-2 mx-[10px] cursor-pointer"
+            className="flex-1 py-2 mx-[10px] cursor-pointer relative"
             ref={progressRef}
             onClick={handleSeekTime}
           >
@@ -122,8 +122,16 @@ const Controler: FC<ControlerProps> = ({
                   }%`,
                 }}
                 className="absolute top-0 bottom-0 bg-blue-500"
-              ></p>
+              />
             </p>
+            <div
+              style={{
+                left: `${
+                  (currentTime * 100) / audioRef?.current?.duration || 0
+                }%`,
+              }}
+              className="w-[10px] h-[10px] bg-blue-500 absolute top-[50%] translate-y-[-50%] rounded-full"
+            />
           </div>
           <p style={{ userSelect: "none" }}>{formatTime(duration)}</p>
         </div>
