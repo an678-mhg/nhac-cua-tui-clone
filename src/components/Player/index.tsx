@@ -19,6 +19,7 @@ import musicStore from "../../zustand/music";
 import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import authStore from "../../zustand/auth";
+import { getStreamUrl } from "../../utils/contants";
 
 const Player = () => {
   const { songIds, currentIndex, setCurrentIndex } = useContext(PlayerContext);
@@ -41,15 +42,11 @@ const Player = () => {
 
   const songKey = songIds && songIds[currentIndex]?.key;
 
-  const { data } = useSWR(
-    `player-${songKey}`,
-    () => {
-      if (songIds && songKey) {
-        return getSong(songKey);
-      }
-    },
-    {}
-  );
+  const { data } = useSWR(`player-${songKey}`, () => {
+    if (songIds && songKey) {
+      return getSong(songKey);
+    }
+  });
 
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(
@@ -88,7 +85,7 @@ const Player = () => {
 
   useEffect(() => {
     if (!audioRef.current || !songIds || !data?.song?.streamUrls) return;
-    audioRef.current.src = data?.song?.streamUrls[0]?.streamUrl;
+    audioRef.current.src = getStreamUrl(data?.song?.streamUrls[0]?.streamUrl);
     audioRef.current.play();
   }, [songIds, data, songKey]);
 

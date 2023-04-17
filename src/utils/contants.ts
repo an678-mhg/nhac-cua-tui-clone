@@ -32,3 +32,8 @@ export const imgNotFound =
 
 export const img404 =
   "https://raw.githubusercontent.com/an678-mhg/NextComics/main/public/not-found.png";
+
+export const getStreamUrl = (url: string) =>
+  `${import.meta.env.VITE_PROXY_URL}/resouce-nct?url=${encodeURIComponent(
+    url
+  )}`;
