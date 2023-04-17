@@ -4,7 +4,6 @@ import MainLayout from "../../layout/MainLayout";
 import Error from "../../components/Shared/Error";
 import VideoSkeletonDetails from "../../components/Skeleton/VideoSkeletonDetails";
 import { getVideoDetail } from "../../apis/video";
-import { getStreamUrl } from "../../utils/contants";
 import { toast } from "react-hot-toast";
 
 const VideoDetails = () => {
