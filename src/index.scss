@@ -21,6 +21,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #111;
+  color: #fff;
 }
 
 img {
@@ -180,8 +182,9 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .song-is-play {
-  background-color: #1877f2;
+  background-color: #222;
   color: white;
+  border-radius: 6px;
 }
 
 .volume-control {

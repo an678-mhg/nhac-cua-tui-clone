@@ -11,7 +11,7 @@ interface UserInfoProps {
 
 const UserInfo: React.FC<UserInfoProps> = ({ displayName, photoURL }) => {
   return (
-    <div className="mt-5 py-2 text-sm bg-gray-200 w-full text-gray-600 rounded-sm flex px-4 items-center justify-between">
+    <div className="mt-5 py-2 text-sm bg-[#222] w-full text-white rounded-sm flex px-4 items-center justify-between">
       <Link to={`/profile`}>
         <div className="flex items-center">
           <div className="w-6 h-6 rounded-full overflow-hidden">

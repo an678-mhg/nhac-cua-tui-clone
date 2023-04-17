@@ -12,7 +12,7 @@ interface SongItemProps {
 const SongItem: FC<SongItemProps> = ({ item, onClick, index }) => {
   return (
     <div
-      className="flex items-start p-2 rounded-md hover:bg-gray-200 transition-colors cursor-pointer"
+      className="flex items-start p-2 rounded-md hover:bg-[#222] transition-colors cursor-pointer"
       onClick={() => onClick(index)}
     >
       <div className="w-[54px] h-[54px]">

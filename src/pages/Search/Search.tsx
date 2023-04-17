@@ -36,7 +36,7 @@ const Search = () => {
         <div>
           <form
             onSubmit={handleSearch}
-            className="flex items-center rounded-sm w-full bg-gray-200 px-4"
+            className="flex items-center rounded-sm w-full bg-[#222] px-4"
           >
             <BsSearch className="w-5 h-5 text-blue-500" />
             <input

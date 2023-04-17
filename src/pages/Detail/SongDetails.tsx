@@ -31,7 +31,7 @@ const SongDetails = () => {
         <div className="px-4">
           <div className="flex md:flex-row flex-col">
             <div className="flex items-center justify-center md:w-auto w-full">
-              <div className="w-[238px] max-w-full aspect-[1/1] bg-gray-400 rounded-md relative">
+              <div className="w-[238px] max-w-full aspect-[1/1] bg-[#222] rounded-md relative">
                 <img className="rounded-md" src={data?.song?.thumbnail} />
               </div>
             </div>
@@ -46,7 +46,7 @@ const SongDetails = () => {
                     <Link
                       to={item.shortLink ? `/ARTIST/${item.shortLink}` : "#"}
                       key={item.artistId}
-                      className="w-5 h-5 bg-gray-500 rounded-full"
+                      className="w-5 h-5 bg- rounded-full"
                     >
                       <img className="rounded-full" src={item.imageUrl} />
                     </Link>
@@ -60,7 +60,7 @@ const SongDetails = () => {
             </div>
           </div>
 
-          <div className="mt-4 mb-5 font-semibold text-xl leading-loose text-gray-500 bg-[rgba(28,30,32,0.02)] p-4">
+          <div className="mt-4 mb-5 font-semibold text-xl leading-loose text-gray-500 bg-[#222] rounded-md p-4">
             <h1>Lời Bài hát</h1>
 
             <div className="font-normal text-sm mt-4 leading-8">

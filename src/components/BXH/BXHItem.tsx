@@ -11,11 +11,11 @@ const BXHItem: React.FC<BXHItemProps> = ({ data, index, handlePlayAll }) => {
   return (
     <div className="mb-4 cursor-pointer" onClick={() => handlePlayAll(index)}>
       <div className="flex items-center">
-        <div className="w-10 h-10 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-[#222] text-gray-400 flex items-center justify-center">
           {index + 1}
         </div>
 
-        <div className="ml-4 bg-gray-100 w-full rounded-md p-2 flex flex-1">
+        <div className="ml-4 bg-[#222] w-full rounded-md p-2 flex flex-1">
           <div className="w-10 h-10 rounded-md overflow-hidden">
             <LazyLoadImage
               effect="blur"

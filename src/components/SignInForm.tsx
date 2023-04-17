@@ -33,7 +33,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ handleClose }) => {
   };
 
   return (
-    <div className="w-[400px] max-w-full bg-[#F0F2F5] p-4 rounded-md modalFadeIn">
+    <div className="w-[400px] max-w-full bg-[#222] p-4 rounded-md modalFadeIn">
       <div className="flex items-center justify-between mb-4">
         <h1 className="font-semibold text-2xl text-text-color">Đăng nhập</h1>
         <button onClick={handleClose} title="Quay lại trang chủ">
@@ -45,7 +45,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ handleClose }) => {
         <div>
           <button
             onClick={() => handleSignIn(googleProvider)}
-            className="flex items-center text-black bg-white p-2 rounded-md w-full mb-4"
+            className="flex items-center text-white bg-[#111] p-2 rounded-md w-full mb-4"
           >
             <FcGoogle className="w-6 h-6 mr-5" /> Đăng nhập với Google
           </button>

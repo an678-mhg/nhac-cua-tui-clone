@@ -7,7 +7,6 @@ import Slider from "../../components/Slider";
 import WrapSong from "../../components/Song/WrapSong";
 import MainLayout from "../../layout/MainLayout";
 import { ArtistDetails as ArtistDetailsType } from "../../model/artitst";
-import { imgNotFound } from "../../utils/contants";
 
 const ArtistDetails = () => {
   const { shortLink } = useParams();

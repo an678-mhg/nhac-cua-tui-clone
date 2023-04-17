@@ -10,7 +10,7 @@ const TrendingItem: FC<TrendingItemProps> = ({ position, name }) => {
   return (
     <Link
       to={`/results?q=${name}`}
-      className="bg-gray-200 py-1 px-2 flex items-center rounded-sm cursor-pointer"
+      className="bg-[#222] py-1 px-2 flex items-center rounded-sm cursor-pointer"
     >
       <span className="text-blue-500 font-semibold">#{position}</span>
 

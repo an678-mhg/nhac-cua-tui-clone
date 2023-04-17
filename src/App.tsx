@@ -112,7 +112,7 @@ function App() {
           right: isPC ? "0px" : player ? "0" : "-100%",
           transition: "all linear 0.3s",
         }}
-        className={`scroll-none overflow-y-scroll md:w-[300px] w-full max-w-full border-l border-r [rgba(28,30,32,0.05)] px-4 h-screen pt-4 fixed top-0 bottom-0 z-[9998] bg-white`}
+        className={`scroll-none overflow-y-scroll md:w-[300px] w-full max-w-full border-l border-r border-[#262626] [rgba(28,30,32,0.05)] px-4 h-screen pt-4 fixed top-0 bottom-0 z-[9998] bg-[#111]`}
       >
         <Player />
       </div>

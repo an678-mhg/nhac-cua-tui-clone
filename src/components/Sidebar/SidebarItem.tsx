@@ -35,7 +35,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
   return (
     <li
       className={`py-2 pl-4 sidebar-parent ${
-        item?.path === location.pathname && "bg-gray-200 rounded-sm"
+        item?.path === location.pathname && "bg-[#222] rounded-sm"
       }`}
       onClick={(e) => handleClickShowChildMenu(e, item)}
     >
@@ -48,7 +48,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
           style={{ color: item.background }}
         >
           <item.icon className={`w-5 h-5 mr-2`} />
-          <span className="text-black font-normal">{item.name}</span>
+          <span className="text-white font-normal">{item.name}</span>
         </div>
         {item.child && (
           <span>
@@ -64,10 +64,10 @@ const SidebarItem: FC<SidebarItemProps> = ({ item }) => {
               onClick={(e) => e.stopPropagation()}
               key={p.name}
               className={`pl-7 ${
-                location.pathname === p.path && "bg-gray-200 rounded-sm"
+                location.pathname === p.path && "bg-[#222] rounded-sm"
               }`}
             >
-              <Link className={`py-2 block`} to={p.path}>
+              <Link className={`py-2 text-white block`} to={p.path}>
                 {p.name}
               </Link>
             </li>

@@ -32,7 +32,7 @@ const Artist = () => {
               <p
                 onClick={() => setGender(0)}
                 className={`py-2 px-4 shadow-sm ${
-                  gender === 0 && "bg-blue-500 text-white"
+                  gender === 0 && "bg-[#222] text-white"
                 }`}
               >
                 Nhóm nhạc
@@ -40,7 +40,7 @@ const Artist = () => {
               <p
                 onClick={() => setGender(1)}
                 className={`py-2 px-4 shadow-sm ${
-                  gender === 1 && "bg-blue-500 text-white"
+                  gender === 1 && "bg-[#222] text-white"
                 }`}
               >
                 Nam
@@ -48,7 +48,7 @@ const Artist = () => {
               <p
                 onClick={() => setGender(2)}
                 className={`py-2 px-4 shadow-sm ${
-                  gender === 2 && "bg-blue-500 text-white"
+                  gender === 2 && "bg-[#222] text-white"
                 }`}
               >
                 Nữ
@@ -63,7 +63,6 @@ const Artist = () => {
                       alt={item.name}
                       width="100%"
                       height="100%"
-                      className="border"
                     />
                   </div>
                 </Link>

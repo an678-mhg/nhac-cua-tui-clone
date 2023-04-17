@@ -26,7 +26,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
             left: isTablet ? "0" : menu ? "0px" : "-200px",
             transition: "all linear 0.3s",
           }}
-          className="w-[200px] max-w-full z-[9999] h-screen pt-6 border-r border-[rgba(28,30,32,0.05)] fixed top-0 bottom-0 left-0 bg-white"
+          className="w-[200px] max-w-full z-[9999] h-screen pt-6 border-r border-[#262626] fixed top-0 bottom-0 left-0 bg-[#111]"
         >
           <Sidebar />
         </div>
@@ -50,7 +50,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="px-4 py-3 shadow-md w-full flex items-center fixed top-0 z-[999] justify-between lg:hidden bg-white"
+            className="px-4 py-3 shadow-md w-full flex items-center fixed top-0 z-[999] justify-between lg:hidden bg-[#111]"
           >
             <AiOutlineMenu
               onClick={setMenu}

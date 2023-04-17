@@ -72,14 +72,14 @@ const Controler: FC<ControlerProps> = ({
           className="cursor-pointer volume-icon"
         >
           {Number(volume) === 0 ? (
-            <BsVolumeMuteFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
+            <BsVolumeMuteFill className="lg:w-5 lg:h-5 w-6 h-6 text-white" />
           ) : (
-            <BsFillVolumeUpFill className="lg:w-5 lg:h-5 w-6 h-6 text-gray-500" />
+            <BsFillVolumeUpFill className="lg:w-5 lg:h-5 w-6 h-6 text-white" />
           )}
 
           <div
             onClick={(e) => e.stopPropagation()}
-            className="volume-control absolute left-[-70px] top-[-90px] bg-gray-200 flex items-center justify-center p-4 rounded-md rotate-[-90deg]"
+            className="volume-control absolute left-[-70px] top-[-90px] bg-[#222] flex items-center justify-center p-4 rounded-md rotate-[-90deg]"
           >
             <input
               id="slider"
@@ -91,7 +91,7 @@ const Controler: FC<ControlerProps> = ({
         </div>
         <button
           onClick={() => toggleListSong()}
-          className="bg-[rgba(28,30,32,0.02)] px-6 py-2 rounded-full text-xs text-gray-400"
+          className="bg-[#222] px-6 py-2 rounded-full text-xs text-gray-400"
         >
           {showListSong ? "Tắt Danh Sách Phát" : "Mở Danh Sách Phát"}
         </button>
@@ -114,7 +114,7 @@ const Controler: FC<ControlerProps> = ({
             ref={progressRef}
             onClick={handleSeekTime}
           >
-            <p className="w-full bg-gray-300 h-[3px] relative">
+            <p className="w-full bg-[#222] h-[3px] relative">
               <p
                 style={{
                   width: `${
@@ -138,17 +138,23 @@ const Controler: FC<ControlerProps> = ({
 
         <div className="flex items-center justify-between mt-5 text-[rgba(28,30,32,0.5)]">
           <div className="flex items-center cursor-pointer">
-            <MdSkipPrevious onClick={handlePrevSong} className="w-8 h-8" />
+            <MdSkipPrevious
+              onClick={handlePrevSong}
+              className="w-8 h-8 text-white"
+            />
           </div>
           <div onClick={handlePlayPause}>
             {playing ? (
-              <AiOutlinePause className="w-12 h-14" />
+              <AiOutlinePause className="w-12 h-14 text-white" />
             ) : (
-              <BsFillPlayFill className="w-14 h-14" />
+              <BsFillPlayFill className="w-14 h-14 text-white" />
             )}
           </div>
           <div className="flex items-center cursor-pointer">
-            <MdSkipNext onClick={handleNextSong} className="w-8 h-8" />
+            <MdSkipNext
+              onClick={handleNextSong}
+              className="w-8 h-8 text-white"
+            />
           </div>
         </div>
       </div>

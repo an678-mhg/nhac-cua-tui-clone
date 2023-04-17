@@ -9,7 +9,7 @@ interface BannerProps {
 const Banner: React.FC<BannerProps> = ({ data, handlePlayAll }) => {
   return (
     <div
-      className="mt-5 p-5 bg-gray-100 rounded-md md:flex hidden"
+      className="mt-5 p-5 bg-[#222] rounded-md md:flex hidden"
       onClick={() => handlePlayAll(0)}
     >
       <div className="relative">
@@ -22,10 +22,10 @@ const Banner: React.FC<BannerProps> = ({ data, handlePlayAll }) => {
       </div>
 
       <div className="flex-1 ml-5">
-        <div className="border-gray-200 border-b pb-4">
+        <div className="pb-4">
           <p>
             <span className="mr-1 text-sm text-gray-400">Bài hát:</span>
-            {data?.title}
+            <p className="font-semibold capitalize">{data?.title}</p>
           </p>
           <div className="mt-2 flex items-center">
             <div className="flex">

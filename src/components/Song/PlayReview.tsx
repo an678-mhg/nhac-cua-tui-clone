@@ -11,7 +11,7 @@ const PlayReview = ({ title }: { title: string }) => {
           setPlayer();
         }
       }}
-      className={`fixed right-0 bottom-0 bg-white p-2 rounded-md mb-14 mr-5 shadow-md lg:hidden ${
+      className={`fixed right-0 bottom-0 bg-[#111] p-2 rounded-md mb-14 mr-5 shadow-md lg:hidden ${
         player ? "hidden" : "block"
       } z-[99999] cursor-pointer`}
     >

@@ -29,7 +29,7 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[rgba(28,30,32,0.02)] rounded-md mb-5 relative ${
+      className={`bg-[#222] rounded-md mb-5 relative ${
         showListSong && "h-full"
       }`}
     >
@@ -48,7 +48,7 @@ const PlayerThumnail: FC<PlayerThumnailProps> = ({
           <div className="pr-4 pl-4 pb-4">
             <div className="w-full aspect-[1/1]">
               <LazyLoadImage
-                className="rounded-md border"
+                className="rounded-md border border-[#262626]"
                 src={thumbnail || imgNotFound}
                 effect="blur"
               />

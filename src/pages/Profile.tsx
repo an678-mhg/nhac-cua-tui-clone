@@ -21,7 +21,7 @@ const Profile = () => {
               </h1>
               <button
                 onClick={() => toast.error("Tính năng đang làm !")}
-                className="text-sm text-gray-600 bg-gray-200 py-2 mt-4 px-4 rounded-md"
+                className="text-sm text-white bg-[#222] py-2 mt-4 px-4 rounded-md"
               >
                 Cập nhật
               </button>
@@ -32,21 +32,21 @@ const Profile = () => {
             <h1 className="text-xl font-semibold">Thông tin cá nhân</h1>
 
             <ul className="mt-5">
-              <li className="bg-gray-200 text-black py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
+              <li className="bg-[#222] text-white py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
                 <span className="text-gray-400 mr-1">Tên hiển thị: </span>{" "}
                 {currentUser?.displayName}
               </li>
-              <li className="bg-gray-200 text-black py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
+              <li className="bg-[#222] text-white py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
                 <span className="text-gray-400 mr-1">Email: </span>{" "}
                 {currentUser?.email}
               </li>
-              <li className="bg-gray-200 text-black py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
+              <li className="bg-[#222] text-white py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
                 <span className="text-gray-400 mr-1">Website: </span> Chưa có
               </li>
-              <li className="bg-gray-200 text-black py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
+              <li className="bg-[#222] text-white py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
                 <span className="text-gray-400 mr-1">Giới tính: </span> Chưa có
               </li>
-              <li className="bg-gray-200 text-black py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
+              <li className="bg-[#222] text-white py-2 mb-4 px-4 rounded-md text-sm flex items-center font-semibold">
                 <span className="text-gray-400 mr-1">Số điện thoại: </span> Chưa
                 có
               </li>

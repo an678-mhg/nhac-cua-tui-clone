@@ -56,7 +56,7 @@ const Explore: FC<ExploreProps> = ({ type, name, radio = "1/1" }) => {
                   <div className="pt-3 flex justify-center">Loading....</div>
                 }
                 endMessage={
-                  <p className="text-center mt-6 text-black w-full">
+                  <p className="text-center mt-6 text-white w-full">
                     Nothing more to see
                   </p>
                 }

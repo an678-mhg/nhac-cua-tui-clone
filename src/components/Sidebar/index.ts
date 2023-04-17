@@ -60,5 +60,6 @@ export const sidebar = [
     name: "Lịch sử",
     path: "/history",
     icon: AiOutlineHistory,
+    background: "#fff",
   },
 ];
